@@ -1,0 +1,12 @@
+Bundle-Name: store-service-builder-api
+Bundle-SymbolicName: com.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.service.exception,\
+	com.service.model,\
+	com.service.service,\
+	com.service.service.persistence
+-check: EXPORTS
+-consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
+-includeresource: META-INF/service.xml=../store-service-builder-service/service.xml
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}

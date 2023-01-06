@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.3.0//EN"
+        "http://www.liferay.com/dtd/liferay-service-builder_7_3_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.service">
+    <namespace>store</namespace>
+    <!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+    <entity local-service="true" name="ElectroType" remote-service="true" uuid="true">
+        <!-- PK fields -->
+
+        <column name="electroTypeId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="name" type="String"/>
+        <column name="employee" type="Collection" entity="Employee" mapping-table="ElectroEmployee"/>
+        <column name="companyId" type="long"/>
+
+    </entity>
+    <entity local-service="true" name="Employee" remote-service="true" uuid="true">
+
+        <!-- PK fields -->
+        <column name="employeeId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="lastname" type="String"/>
+        <column name="firstname" type="String"/>
+        <column name="patronymic" type="String"/>
+        <column name="birthdate" type="Date"/>
+        <column name="PositionTypeId" type="long"/>
+        <column name="gender" type="boolean"/>
+        <column name="types" type="Collection" entity="ElectroType" mapping-table="ElectroEmployee"/>
+        <column name="companyId" type="long"/>
+
+    </entity>
+    <entity local-service="true" name="PositionType" remote-service="true" uuid="true">
+
+        <!-- PK fields -->
+
+        <column name="positionTypeId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="name" type="String"/>
+
+
+    </entity>
+    <entity local-service="true" name="Purchase" remote-service="true" uuid="true">
+
+        <!-- PK fields -->
+
+        <column name="purchaseId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="ElectronicsId" type="long"/>
+        <column name="employeeId" type="long"/>
+        <column name="purchaseDate" type="Date"/>
+        <column name="PurchaseTypeId" type="long"/>
+        <!-- Order -->
+
+        <order by="asc">
+            <order-column name="purchaseDate"/>
+        </order>
+
+    </entity>
+    <entity local-service="true" name="Electronics" remote-service="true" uuid="true">
+
+        <!-- PK fields -->
+
+        <column name="electronicsId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="name" type="String"/>
+        <column name="electroTypeId" type="long"/>
+        <column name="price" type="long"/>
+        <column name="electronics_count" type="int"/>
+        <column name="inStock" type="boolean"/>
+        <column name="archive" type="boolean"/>
+        <column name="description" type="String"/>
+
+    </entity>
+    <entity local-service="true" name="PurchaseType" remote-service="true" uuid="true">
+
+        <!-- PK fields -->
+
+        <column name="purchaseTypeId" primary="true" type="long" id-type="increment"/>
+
+        <!-- Other fields -->
+
+        <column name="name" type="String"/>
+
+    </entity>
+</service-builder>
