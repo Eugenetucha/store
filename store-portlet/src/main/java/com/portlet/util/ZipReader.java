@@ -89,12 +89,8 @@ public class ZipReader {
                     break;
                 }
                 case 2: {
-                    try {
-                        for (int i = 1; i < records.size(); i++) {
-                            electroTypeLocalService.addElectroType(Long.parseLong(records.get(i).get(0)), records.get(i).get(1));
-                        }
-                    } catch (RuntimeException e) {
-                        System.out.println(e);
+                    for (int i = 1; i < records.size(); i++) {
+                        electroTypeLocalService.addElectroType(Long.parseLong(records.get(i).get(0)), records.get(i).get(1));
                     }
                     break;
                 }

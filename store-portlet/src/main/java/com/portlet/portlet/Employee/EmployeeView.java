@@ -25,17 +25,6 @@ public class EmployeeView implements MVCRenderCommand {
 
     @Override
     public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
-        if(electroTypeLocalService.getElectroTypesCount() != 0){
-            try {
-                for (ElectroType electroType : electroTypeLocalService.getElectroTypes(0, electroTypeLocalService.getElectroTypesCount())) {
-                    System.out.println(electroType.getElectroTypeId());
-                }
-            } catch (RuntimeException e) {
-                System.out.println(e);
-            }
-        }else{
-            System.out.println("dasdsadsadsaads");
-        }
         renderRequest.setAttribute("list", employeeLocalService.getEmployees(0, 10));
         renderRequest.setAttribute("total", employeeLocalService.getEmployeesCount());
         return "/employee/employee.jsp";

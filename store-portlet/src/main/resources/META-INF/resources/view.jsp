@@ -30,7 +30,7 @@
 <aui:form action="<%= uploadFileURL %>" method="POST" name="fm" enctype="multipart/form-data">
   <aui:fieldset>
 
-    <aui:input type="file" name="Select a file:"/>
+    <aui:input type="file" name="Select a file with your data:"/>
 
     <aui:button-row>
       <aui:button type="submit" value="Save"/>

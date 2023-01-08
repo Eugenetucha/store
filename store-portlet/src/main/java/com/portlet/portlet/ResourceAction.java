@@ -5,6 +5,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.portlet.constants.StorePortletKeys;
 import com.portlet.util.ZipReader;
+import com.service.service.PositionTypeLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -27,11 +28,12 @@ public class ResourceAction implements MVCActionCommand {
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
         UploadPortletRequest uploadRequest
                 = PortalUtil.getUploadPortletRequest(actionRequest);
-        File file = uploadRequest.getFile("Select a file:");
+        File file = uploadRequest.getFile("Select a file with your data:");
         zipReader.setRead(file);
         zipReader.setOut(Paths.get("C:\\Users\\eugene\\IdeaProjects\\store\\store-portlet\\src\\main\\resources\\out\\"));
         zipReader.readZIP();
         zipReader.readCSV();
+        System.out.println(positionTypeLocalService.getPositionTypes(0, positionTypeLocalService.getPositionTypesCount()));
         return false;
     }
 
@@ -41,4 +43,11 @@ public class ResourceAction implements MVCActionCommand {
     }
 
     ZipReader zipReader;
+
+    @Reference(unbind = "-")
+    protected void setPositionTypeLocalService(PositionTypeLocalService positionTypeLocalService) {
+        this.positionTypeLocalService = positionTypeLocalService;
+    }
+
+    PositionTypeLocalService positionTypeLocalService;
 }

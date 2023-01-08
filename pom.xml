@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>store</groupId>
     <artifactId>store</artifactId>
@@ -11,8 +12,9 @@
         <module>themes</module>
         <module>store-portlet</module>
         <module>store-service-builder</module>
-    <module>best-employees</module>
-  </modules>
+        <module>best-employees</module>
+        <module>simple-rest</module>
+    </modules>
     <properties>
         <liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
         <liferay.bom.version>7.3.5</liferay.bom.version>
