@@ -16,10 +16,7 @@ import javax.portlet.filter.FilterConfig;
 import javax.portlet.filter.PortletFilter;
 import javax.portlet.filter.RenderFilter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component(
@@ -41,6 +38,11 @@ public class ListRenderFilter implements RenderFilter {
             int finalI = i;
             List<Purchase> purchases = purchaseLocalService.getPurchases(0, purchaseLocalService.getPurchasesCount())
                     .stream()
+                    .filter(x -> {
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTime(x.getPurchaseDate());
+                        return cal.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH);
+                    })
                     .filter(x -> {
                         try {
                             return employeeLocalService.getEmployee(x.getEmployeeId()).getPositionTypeId() == list.get(finalI).getPositionTypeId();
