@@ -74,7 +74,7 @@ public class PurchaseModelImpl
 	public static final Object[][] TABLE_COLUMNS = {
 		{"uuid_", Types.VARCHAR}, {"purchaseId", Types.BIGINT},
 		{"ElectronicsId", Types.BIGINT}, {"employeeId", Types.BIGINT},
-		{"purchaseDate", Types.TIMESTAMP}, {"PurchaseTypeId", Types.BIGINT}
+		{"purchaseDate", Types.TIMESTAMP}, {"purchaseTypeId", Types.BIGINT}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -86,11 +86,11 @@ public class PurchaseModelImpl
 		TABLE_COLUMNS_MAP.put("ElectronicsId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("employeeId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("purchaseDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("PurchaseTypeId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("purchaseTypeId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table store_Purchase (uuid_ VARCHAR(75) null,purchaseId LONG not null primary key,ElectronicsId LONG,employeeId LONG,purchaseDate DATE null,PurchaseTypeId LONG)";
+		"create table store_Purchase (uuid_ VARCHAR(75) null,purchaseId LONG not null primary key,ElectronicsId LONG,employeeId LONG,purchaseDate DATE null,purchaseTypeId LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table store_Purchase";
 
@@ -294,9 +294,9 @@ public class PurchaseModelImpl
 			"purchaseDate",
 			(BiConsumer<Purchase, Date>)Purchase::setPurchaseDate);
 		attributeGetterFunctions.put(
-			"PurchaseTypeId", Purchase::getPurchaseTypeId);
+			"purchaseTypeId", Purchase::getPurchaseTypeId);
 		attributeSetterBiConsumers.put(
-			"PurchaseTypeId",
+			"purchaseTypeId",
 			(BiConsumer<Purchase, Long>)Purchase::setPurchaseTypeId);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
@@ -397,16 +397,16 @@ public class PurchaseModelImpl
 	@JSON
 	@Override
 	public long getPurchaseTypeId() {
-		return _PurchaseTypeId;
+		return _purchaseTypeId;
 	}
 
 	@Override
-	public void setPurchaseTypeId(long PurchaseTypeId) {
+	public void setPurchaseTypeId(long purchaseTypeId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_PurchaseTypeId = PurchaseTypeId;
+		_purchaseTypeId = purchaseTypeId;
 	}
 
 	public long getColumnBitmask() {
@@ -570,7 +570,7 @@ public class PurchaseModelImpl
 			purchaseCacheModel.purchaseDate = Long.MIN_VALUE;
 		}
 
-		purchaseCacheModel.PurchaseTypeId = getPurchaseTypeId();
+		purchaseCacheModel.purchaseTypeId = getPurchaseTypeId();
 
 		return purchaseCacheModel;
 	}
@@ -669,7 +669,7 @@ public class PurchaseModelImpl
 	private long _ElectronicsId;
 	private long _employeeId;
 	private Date _purchaseDate;
-	private long _PurchaseTypeId;
+	private long _purchaseTypeId;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -705,7 +705,7 @@ public class PurchaseModelImpl
 		_columnOriginalValues.put("ElectronicsId", _ElectronicsId);
 		_columnOriginalValues.put("employeeId", _employeeId);
 		_columnOriginalValues.put("purchaseDate", _purchaseDate);
-		_columnOriginalValues.put("PurchaseTypeId", _PurchaseTypeId);
+		_columnOriginalValues.put("purchaseTypeId", _purchaseTypeId);
 	}
 
 	private static final Map<String, String> _attributeNames;
@@ -739,7 +739,7 @@ public class PurchaseModelImpl
 
 		columnBitmasks.put("purchaseDate", 16L);
 
-		columnBitmasks.put("PurchaseTypeId", 32L);
+		columnBitmasks.put("purchaseTypeId", 32L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

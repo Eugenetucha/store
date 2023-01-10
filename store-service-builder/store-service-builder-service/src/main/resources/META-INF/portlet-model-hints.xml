@@ -54,7 +54,7 @@
 		<field name="ElectronicsId" type="long" />
 		<field name="employeeId" type="long" />
 		<field name="purchaseDate" type="Date" />
-		<field name="PurchaseTypeId" type="long" />
+		<field name="purchaseTypeId" type="long" />
 	</model>
 	<model name="com.service.model.PurchaseType">
 		<field name="uuid" type="String" />

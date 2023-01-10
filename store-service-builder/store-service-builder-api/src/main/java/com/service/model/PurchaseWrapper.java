@@ -47,7 +47,7 @@ public class PurchaseWrapper
 		attributes.put("ElectronicsId", getElectronicsId());
 		attributes.put("employeeId", getEmployeeId());
 		attributes.put("purchaseDate", getPurchaseDate());
-		attributes.put("PurchaseTypeId", getPurchaseTypeId());
+		attributes.put("purchaseTypeId", getPurchaseTypeId());
 
 		return attributes;
 	}
@@ -84,10 +84,10 @@ public class PurchaseWrapper
 			setPurchaseDate(purchaseDate);
 		}
 
-		Long PurchaseTypeId = (Long)attributes.get("PurchaseTypeId");
+		Long purchaseTypeId = (Long)attributes.get("purchaseTypeId");
 
-		if (PurchaseTypeId != null) {
-			setPurchaseTypeId(PurchaseTypeId);
+		if (purchaseTypeId != null) {
+			setPurchaseTypeId(purchaseTypeId);
 		}
 	}
 
@@ -219,11 +219,11 @@ public class PurchaseWrapper
 	/**
 	 * Sets the purchase type ID of this purchase.
 	 *
-	 * @param PurchaseTypeId the purchase type ID of this purchase
+	 * @param purchaseTypeId the purchase type ID of this purchase
 	 */
 	@Override
-	public void setPurchaseTypeId(long PurchaseTypeId) {
-		model.setPurchaseTypeId(PurchaseTypeId);
+	public void setPurchaseTypeId(long purchaseTypeId) {
+		model.setPurchaseTypeId(purchaseTypeId);
 	}
 
 	/**

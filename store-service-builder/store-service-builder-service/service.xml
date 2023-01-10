@@ -57,7 +57,7 @@
         <column name="ElectronicsId" type="long"/>
         <column name="employeeId" type="long"/>
         <column name="purchaseDate" type="Date"/>
-        <column name="PurchaseTypeId" type="long"/>
+        <column name="purchaseTypeId" type="long"/>
         <!-- Order -->
 
         <order by="asc">

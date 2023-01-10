@@ -2,30 +2,19 @@
 <%@ taglib prefix="clay" uri="http://liferay.com/tld/clay" %>
 <%@page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.SelectOption" %>
 <%
-        List<SelectOption> selectOptions = new ArrayList<>();
-        List<SelectOption> selectOptions2 = new ArrayList<>();
-        List<PositionType> ps =(List<PositionType>) renderRequest.getAttribute("ps");
-        for (int i = 0; i < ps.size(); i++) {
-            selectOptions.add(new SelectOption(ps.get(i).getName(),String.valueOf(ps.get(i).getPositionTypeId())));
+        List<Employee> employee_sum = (List<Employee>) renderRequest.getAttribute("sum");
+        List<Employee> employee_count = (List<Employee>) renderRequest.getAttribute("count");
+        PositionTypeLocalService positionTypeLocalService =(PositionTypeLocalService) renderRequest.getAttribute("ps");
+        out.println("The best employees by the number of equipment sold"+ "<br/>");
+        for(Employee employee : employee_count){
+            String position = positionTypeLocalService.getPositionType(employee.getPositionTypeId()).getName();
+            out.println("The best employee in the position:"+ " " + position + "<br/>");
+            out.println(employee.getFirstname()+ ", "+employee.getLastname()+ "<br/>" );
         }
-        selectOptions2.add((new SelectOption("Count", String.valueOf("Count"))));
-        selectOptions2.add((new SelectOption("Sum", String.valueOf("Sum"))));
-
+        out.println("The best employees by total revenue"+ "<br/>");
+        for(Employee employee : employee_sum){
+            String position = positionTypeLocalService.getPositionType(employee.getPositionTypeId()).getName();
+            out.println("The best employee in the position:"+ " " + position+ "<br/>");
+            out.println(employee.getFirstname()+ ", "+employee.getLastname()+ "<br/>" );
+        }
 %>
-<portlet:renderURL var="listURL">
-    <portlet:param name="mvcRenderCommandName" value="/list/options/" />
-</portlet:renderURL>
-<aui:form action="<%= listURL %>" method="POST" name="fm" enctype="multipart/form-data">
-	<aui:fieldset>
-    <clay:select
-    			label="Select the desired position:"
-    			name="<%=curPortletNameSpace+"position_list"%>"
-    			options="<%= selectOptions %>"/>
-    <clay:select
-                label="select by which parameter the selection will take place:"
-                name="<%=curPortletNameSpace+"type_list"%>"
-                options="<%= selectOptions2 %>"/>
-      <aui:button type="submit" value="show"/>
-    </aui:fieldset>
-
-</aui:form>

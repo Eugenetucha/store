@@ -74,8 +74,8 @@ public class PurchaseCacheModel
 		sb.append(employeeId);
 		sb.append(", purchaseDate=");
 		sb.append(purchaseDate);
-		sb.append(", PurchaseTypeId=");
-		sb.append(PurchaseTypeId);
+		sb.append(", purchaseTypeId=");
+		sb.append(purchaseTypeId);
 		sb.append("}");
 
 		return sb.toString();
@@ -103,7 +103,7 @@ public class PurchaseCacheModel
 			purchaseImpl.setPurchaseDate(new Date(purchaseDate));
 		}
 
-		purchaseImpl.setPurchaseTypeId(PurchaseTypeId);
+		purchaseImpl.setPurchaseTypeId(purchaseTypeId);
 
 		purchaseImpl.resetOriginalValues();
 
@@ -121,7 +121,7 @@ public class PurchaseCacheModel
 		employeeId = objectInput.readLong();
 		purchaseDate = objectInput.readLong();
 
-		PurchaseTypeId = objectInput.readLong();
+		purchaseTypeId = objectInput.readLong();
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public class PurchaseCacheModel
 		objectOutput.writeLong(employeeId);
 		objectOutput.writeLong(purchaseDate);
 
-		objectOutput.writeLong(PurchaseTypeId);
+		objectOutput.writeLong(purchaseTypeId);
 	}
 
 	public String uuid;
@@ -148,6 +148,6 @@ public class PurchaseCacheModel
 	public long ElectronicsId;
 	public long employeeId;
 	public long purchaseDate;
-	public long PurchaseTypeId;
+	public long purchaseTypeId;
 
 }

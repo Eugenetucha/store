@@ -15,7 +15,7 @@
    <liferay-ui:search-container-row className="com.service.model.Purchase" modelVar="purchase" keyProperty="purchaseId">
        <liferay-ui:search-container-column-text name="id" property ="purchaseId"/>
        <liferay-ui:search-container-column-text name="purchaseDate" property ="purchaseDate"/>
-       <liferay-ui:search-container-column-text name="PurchaseTypeId" property ="PurchaseTypeId"/>
+       <liferay-ui:search-container-column-text name="purchaseTypeId" property ="purchaseTypeId"/>
        <liferay-ui:search-container-column-text name="actions">
            <liferay-ui:icon-menu direction="left-side" icon="" markupView="lexicon" message="actions" showWhenSingleIcon="<%= true %>">
                <portlet:renderURL var="editPurchase">

@@ -32,7 +32,7 @@ public class PurchaseAddAction implements MVCActionCommand {
     @Override
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
         if (check(actionRequest, actionResponse)) {
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
             try {
                 Electronics electronics = electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest,
                         "ElectronicsId")));

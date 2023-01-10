@@ -32,8 +32,6 @@ public class ResourceAction implements MVCActionCommand {
         zipReader.setRead(file);
         zipReader.setOut(Paths.get("C:\\Users\\eugene\\IdeaProjects\\store\\store-portlet\\src\\main\\resources\\out\\"));
         zipReader.readZIP();
-        zipReader.readCSV();
-        System.out.println(positionTypeLocalService.getPositionTypes(0, positionTypeLocalService.getPositionTypesCount()));
         return false;
     }
 

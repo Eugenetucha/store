@@ -48,7 +48,7 @@ create table store_Purchase (
 	ElectronicsId LONG,
 	employeeId LONG,
 	purchaseDate DATE null,
-	PurchaseTypeId LONG
+	purchaseTypeId LONG
 );
 
 create table store_PurchaseType (

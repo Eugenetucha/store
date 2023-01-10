@@ -29,7 +29,7 @@ public class EmployeeUpdateAction implements MVCActionCommand {
     @Override
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
         if (check(actionRequest, actionResponse)) {
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
             try {
                 Date date = formatter.parse(ParamUtil.getString(actionRequest, "birthdate"));
                 employeeLocalService.updateEmployeeddEmployee(ParamUtil.getString(actionRequest, "lastname"),

@@ -189,7 +189,7 @@ public class PurchasePersistenceTest {
 	protected OrderByComparator<Purchase> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
 			"store_Purchase", "uuid", true, "purchaseId", true, "ElectronicsId",
-			true, "employeeId", true, "purchaseDate", true, "PurchaseTypeId",
+			true, "employeeId", true, "purchaseDate", true, "purchaseTypeId",
 			true);
 	}
 

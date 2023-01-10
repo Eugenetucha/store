@@ -133,11 +133,11 @@ public class PurchaseSoap implements Serializable {
 	}
 
 	public long getPurchaseTypeId() {
-		return _PurchaseTypeId;
+		return _purchaseTypeId;
 	}
 
-	public void setPurchaseTypeId(long PurchaseTypeId) {
-		_PurchaseTypeId = PurchaseTypeId;
+	public void setPurchaseTypeId(long purchaseTypeId) {
+		_purchaseTypeId = purchaseTypeId;
 	}
 
 	private String _uuid;
@@ -145,6 +145,6 @@ public class PurchaseSoap implements Serializable {
 	private long _ElectronicsId;
 	private long _employeeId;
 	private Date _purchaseDate;
-	private long _PurchaseTypeId;
+	private long _purchaseTypeId;
 
 }

@@ -136,8 +136,8 @@ public interface PurchaseModel extends BaseModel<Purchase> {
 	/**
 	 * Sets the purchase type ID of this purchase.
 	 *
-	 * @param PurchaseTypeId the purchase type ID of this purchase
+	 * @param purchaseTypeId the purchase type ID of this purchase
 	 */
-	public void setPurchaseTypeId(long PurchaseTypeId);
+	public void setPurchaseTypeId(long purchaseTypeId);
 
 }
