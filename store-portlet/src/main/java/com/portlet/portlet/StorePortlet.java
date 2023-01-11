@@ -1,14 +1,15 @@
 package com.portlet.portlet;
 
 
-import com.portlet.constants.StorePortletKeys;
-
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
-import javax.portlet.*;
-
+import com.portlet.constants.StorePortletKeys;
 import org.osgi.service.component.annotations.Component;
 
+import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import java.io.IOException;
 
 
 /**
@@ -30,4 +31,8 @@ import org.osgi.service.component.annotations.Component;
         service = Portlet.class
 )
 public class StorePortlet extends MVCPortlet {
+        @Override
+        public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
+                super.doView(renderRequest, renderResponse);
+        }
 }

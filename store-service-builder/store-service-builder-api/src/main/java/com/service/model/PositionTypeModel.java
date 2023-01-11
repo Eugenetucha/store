@@ -44,14 +44,14 @@ public interface PositionTypeModel extends BaseModel<PositionType> {
 	 *
 	 * @return the primary key of this position type
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this position type.
 	 *
 	 * @param primaryKey the primary key of this position type
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this position type.
@@ -59,28 +59,28 @@ public interface PositionTypeModel extends BaseModel<PositionType> {
 	 * @return the uuid of this position type
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this position type.
 	 *
 	 * @param uuid the uuid of this position type
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the position type ID of this position type.
 	 *
 	 * @return the position type ID of this position type
 	 */
-	public long getPositionTypeId();
+    long getPositionTypeId();
 
 	/**
 	 * Sets the position type ID of this position type.
 	 *
 	 * @param positionTypeId the position type ID of this position type
 	 */
-	public void setPositionTypeId(long positionTypeId);
+    void setPositionTypeId(long positionTypeId);
 
 	/**
 	 * Returns the name of this position type.
@@ -88,13 +88,13 @@ public interface PositionTypeModel extends BaseModel<PositionType> {
 	 * @return the name of this position type
 	 */
 	@AutoEscape
-	public String getName();
+    String getName();
 
 	/**
 	 * Sets the name of this position type.
 	 *
 	 * @param name the name of this position type
 	 */
-	public void setName(String name);
+    void setName(String name);
 
 }

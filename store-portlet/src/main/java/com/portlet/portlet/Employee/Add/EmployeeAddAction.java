@@ -16,9 +16,7 @@ import javax.portlet.PortletException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Component(
         immediate = true,
@@ -38,7 +36,7 @@ public class EmployeeAddAction implements MVCActionCommand {
                 Employee employee = employeeLocalService.addEmployee(ParamUtil.getString(actionRequest, "lastname"),
                         ParamUtil.getString(actionRequest, "firstname"), ParamUtil.getString(actionRequest, "patronymic"), date,
                         Long.parseLong(ParamUtil.getString(actionRequest, "PositionTypeId")), Boolean.parseBoolean(ParamUtil.getString(actionRequest, "gender")));
-                List<String> types = Arrays.asList(ParamUtil.getString(actionRequest, "etypes").split(","));
+                String[] types = ParamUtil.getString(actionRequest, "etypes").split(",");
                 for (String type : types) {
                     employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                 }
@@ -55,7 +53,7 @@ public class EmployeeAddAction implements MVCActionCommand {
             SessionErrors.add(actionRequest, "birthdate-error");
             return false;
         }
-        if (ParamUtil.getString(actionRequest, "lastname").isEmpty()||
+        if (ParamUtil.getString(actionRequest, "lastname").isEmpty() ||
                 ParamUtil.getString(actionRequest, "lastname").length() > 100) {
             SessionErrors.add(actionRequest, "lastname-error");
             return false;

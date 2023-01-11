@@ -73,21 +73,21 @@ public interface ElectroTypeLocalService
 	 * @return the electro type that was added
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public ElectroType addElectroType(ElectroType electroType);
+    ElectroType addElectroType(ElectroType electroType);
 
-	public ElectroType addElectroType(Long id, String name);
+	ElectroType addElectroType(Long id, String name);
 
-	public void addEmployeeElectroType(
+	void addEmployeeElectroType(
 		long employeeId, ElectroType electroType);
 
-	public void addEmployeeElectroType(long employeeId, long electroTypeId);
+	void addEmployeeElectroType(long employeeId, long electroTypeId);
 
-	public void addEmployeeElectroTypes(
+	void addEmployeeElectroTypes(
 		long employeeId, List<ElectroType> electroTypes);
 
-	public void addEmployeeElectroTypes(long employeeId, long[] electroTypeIds);
+	void addEmployeeElectroTypes(long employeeId, long[] electroTypeIds);
 
-	public void clearEmployeeElectroTypes(long employeeId);
+	void clearEmployeeElectroTypes(long employeeId);
 
 	/**
 	 * Creates a new electro type with the primary key. Does not add the electro type to the database.
@@ -96,12 +96,12 @@ public interface ElectroTypeLocalService
 	 * @return the new electro type
 	 */
 	@Transactional(enabled = false)
-	public ElectroType createElectroType(long electroTypeId);
+    ElectroType createElectroType(long electroTypeId);
 
 	/**
 	 * @throws PortalException
 	 */
-	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+    PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -115,7 +115,7 @@ public interface ElectroTypeLocalService
 	 * @return the electro type that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public ElectroType deleteElectroType(ElectroType electroType);
+    ElectroType deleteElectroType(ElectroType electroType);
 
 	/**
 	 * Deletes the electro type with the primary key from the database. Also notifies the appropriate model listeners.
@@ -129,29 +129,29 @@ public interface ElectroTypeLocalService
 	 * @throws PortalException if a electro type with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public ElectroType deleteElectroType(long electroTypeId)
+    ElectroType deleteElectroType(long electroTypeId)
 		throws PortalException;
 
-	public void deleteEmployeeElectroType(
+	void deleteEmployeeElectroType(
 		long employeeId, ElectroType electroType);
 
-	public void deleteEmployeeElectroType(long employeeId, long electroTypeId);
+	void deleteEmployeeElectroType(long employeeId, long electroTypeId);
 
-	public void deleteEmployeeElectroTypes(
+	void deleteEmployeeElectroTypes(
 		long employeeId, List<ElectroType> electroTypes);
 
-	public void deleteEmployeeElectroTypes(
+	void deleteEmployeeElectroTypes(
 		long employeeId, long[] electroTypeIds);
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+    PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery dynamicQuery();
+    DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
@@ -160,7 +160,7 @@ public interface ElectroTypeLocalService
 	 * @return the matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
+    <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
@@ -175,7 +175,7 @@ public interface ElectroTypeLocalService
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
@@ -192,7 +192,7 @@ public interface ElectroTypeLocalService
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<T> orderByComparator);
 
@@ -203,7 +203,7 @@ public interface ElectroTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+    long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -213,11 +213,11 @@ public interface ElectroTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
+    long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ElectroType fetchElectroType(long electroTypeId);
+    ElectroType fetchElectroType(long electroTypeId);
 
 	/**
 	 * Returns the electro type with the matching UUID and company.
@@ -227,11 +227,11 @@ public interface ElectroTypeLocalService
 	 * @return the matching electro type, or <code>null</code> if a matching electro type could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ElectroType fetchElectroTypeByUuidAndCompanyId(
+    ElectroType fetchElectroTypeByUuidAndCompanyId(
 		String uuid, long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+    ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	 * Returns the electro type with the primary key.
@@ -241,7 +241,7 @@ public interface ElectroTypeLocalService
 	 * @throws PortalException if a electro type with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ElectroType getElectroType(long electroTypeId)
+    ElectroType getElectroType(long electroTypeId)
 		throws PortalException;
 
 	/**
@@ -253,7 +253,7 @@ public interface ElectroTypeLocalService
 	 * @throws PortalException if a matching electro type could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ElectroType getElectroTypeByUuidAndCompanyId(
+    ElectroType getElectroTypeByUuidAndCompanyId(
 			String uuid, long companyId)
 		throws PortalException;
 
@@ -269,7 +269,7 @@ public interface ElectroTypeLocalService
 	 * @return the range of electro types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ElectroType> getElectroTypes(int start, int end);
+    List<ElectroType> getElectroTypes(int start, int end);
 
 	/**
 	 * Returns the number of electro types.
@@ -277,22 +277,22 @@ public interface ElectroTypeLocalService
 	 * @return the number of electro types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getElectroTypesCount();
+    int getElectroTypesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ElectroType> getEmployeeElectroTypes(long employeeId);
+    List<ElectroType> getEmployeeElectroTypes(long employeeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ElectroType> getEmployeeElectroTypes(
+    List<ElectroType> getEmployeeElectroTypes(
 		long employeeId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ElectroType> getEmployeeElectroTypes(
+    List<ElectroType> getEmployeeElectroTypes(
 		long employeeId, int start, int end,
 		OrderByComparator<ElectroType> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getEmployeeElectroTypesCount(long employeeId);
+    int getEmployeeElectroTypesCount(long employeeId);
 
 	/**
 	 * Returns the employeeIds of the employees associated with the electro type.
@@ -301,33 +301,33 @@ public interface ElectroTypeLocalService
 	 * @return long[] the employeeIds of employees associated with the electro type
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getEmployeePrimaryKeys(long electroTypeId);
+    long[] getEmployeePrimaryKeys(long electroTypeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+    IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+    PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasEmployeeElectroType(long employeeId, long electroTypeId);
+    boolean hasEmployeeElectroType(long employeeId, long electroTypeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasEmployeeElectroTypes(long employeeId);
+    boolean hasEmployeeElectroTypes(long employeeId);
 
-	public void setEmployeeElectroTypes(long employeeId, long[] electroTypeIds);
+	void setEmployeeElectroTypes(long employeeId, long[] electroTypeIds);
 
 	/**
 	 * Updates the electro type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -340,6 +340,6 @@ public interface ElectroTypeLocalService
 	 * @return the electro type that was updated
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public ElectroType updateElectroType(ElectroType electroType);
+    ElectroType updateElectroType(ElectroType electroType);
 
 }

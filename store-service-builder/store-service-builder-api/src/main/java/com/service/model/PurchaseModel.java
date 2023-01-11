@@ -46,14 +46,14 @@ public interface PurchaseModel extends BaseModel<Purchase> {
 	 *
 	 * @return the primary key of this purchase
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this purchase.
 	 *
 	 * @param primaryKey the primary key of this purchase
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this purchase.
@@ -61,83 +61,83 @@ public interface PurchaseModel extends BaseModel<Purchase> {
 	 * @return the uuid of this purchase
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this purchase.
 	 *
 	 * @param uuid the uuid of this purchase
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the purchase ID of this purchase.
 	 *
 	 * @return the purchase ID of this purchase
 	 */
-	public long getPurchaseId();
+    long getPurchaseId();
 
 	/**
 	 * Sets the purchase ID of this purchase.
 	 *
 	 * @param purchaseId the purchase ID of this purchase
 	 */
-	public void setPurchaseId(long purchaseId);
+    void setPurchaseId(long purchaseId);
 
 	/**
 	 * Returns the electronics ID of this purchase.
 	 *
 	 * @return the electronics ID of this purchase
 	 */
-	public long getElectronicsId();
+    long getElectronicsId();
 
 	/**
 	 * Sets the electronics ID of this purchase.
 	 *
 	 * @param ElectronicsId the electronics ID of this purchase
 	 */
-	public void setElectronicsId(long ElectronicsId);
+    void setElectronicsId(long ElectronicsId);
 
 	/**
 	 * Returns the employee ID of this purchase.
 	 *
 	 * @return the employee ID of this purchase
 	 */
-	public long getEmployeeId();
+    long getEmployeeId();
 
 	/**
 	 * Sets the employee ID of this purchase.
 	 *
 	 * @param employeeId the employee ID of this purchase
 	 */
-	public void setEmployeeId(long employeeId);
+    void setEmployeeId(long employeeId);
 
 	/**
 	 * Returns the purchase date of this purchase.
 	 *
 	 * @return the purchase date of this purchase
 	 */
-	public Date getPurchaseDate();
+    Date getPurchaseDate();
 
 	/**
 	 * Sets the purchase date of this purchase.
 	 *
 	 * @param purchaseDate the purchase date of this purchase
 	 */
-	public void setPurchaseDate(Date purchaseDate);
+    void setPurchaseDate(Date purchaseDate);
 
 	/**
 	 * Returns the purchase type ID of this purchase.
 	 *
 	 * @return the purchase type ID of this purchase
 	 */
-	public long getPurchaseTypeId();
+    long getPurchaseTypeId();
 
 	/**
 	 * Sets the purchase type ID of this purchase.
 	 *
 	 * @param purchaseTypeId the purchase type ID of this purchase
 	 */
-	public void setPurchaseTypeId(long purchaseTypeId);
+    void setPurchaseTypeId(long purchaseTypeId);
 
 }

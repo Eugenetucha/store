@@ -47,12 +47,8 @@ public class PurchaseTypeCacheModel
 		PurchaseTypeCacheModel purchaseTypeCacheModel =
 			(PurchaseTypeCacheModel)object;
 
-		if (purchaseTypeId == purchaseTypeCacheModel.purchaseTypeId) {
-			return true;
-		}
-
-		return false;
-	}
+        return purchaseTypeId == purchaseTypeCacheModel.purchaseTypeId;
+    }
 
 	@Override
 	public int hashCode() {

@@ -1300,7 +1300,7 @@ public class ElectronicsPersistenceImpl
 		return finderPath;
 	}
 
-	private Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
+	private final Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
 		new HashSet<>();
 	private ServiceRegistration<ArgumentsResolver>
 		_argumentsResolverServiceRegistration;
@@ -1340,7 +1340,7 @@ public class ElectronicsPersistenceImpl
 
 				for (String columnName : columnNames) {
 					finderPathColumnBitmask |=
-						electronicsModelImpl.getColumnBitmask(columnName);
+						ElectronicsModelImpl.getColumnBitmask(columnName);
 				}
 
 				_finderPathColumnBitmasksCache.put(

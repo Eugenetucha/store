@@ -1,5 +1,7 @@
-package com.portlet.portlet.Electronics.Add;
+package com.portlet.portlet.electronics;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -12,18 +14,22 @@ import org.osgi.service.component.annotations.Reference;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.ProcessAction;
 
 @Component(
         immediate = true,
         property = {
                 "javax.portlet.name=" + StorePortletKeys.STORE,
-                "mvc.command.name=/electronics/add_electronics/what"
+                "mvc.command.name=addElectronics",
+                "mvc.command.name=updateElectronics",
+                "mvc.command.name=deleteElectronics"
         },
         service = MVCActionCommand.class
 )
-public class ElectroAddAction implements MVCActionCommand {
-    @Override
-    public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+public class ElectroAction extends BaseMVCActionCommand {
+
+    @ProcessAction(name = "addElectronics")
+    public boolean addElectronics(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
         if (check(actionRequest, actionResponse)) {
             electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
                     ParamUtil.getString(actionRequest, "name"),
@@ -32,6 +38,31 @@ public class ElectroAddAction implements MVCActionCommand {
                     Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
                     Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
                     ParamUtil.getString(actionRequest, "description"));
+        }
+        return false;
+    }
+
+
+    @ProcessAction(name = "updateElectronics")
+    public void updateElectronics(ActionRequest actionRequest, ActionResponse actionResponse) {
+        if (check(actionRequest, actionResponse)) {
+            electronicsLocalService.updateElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
+                    ParamUtil.getString(actionRequest, "name"),
+                    Long.parseLong(ParamUtil.getString(actionRequest, "price")),
+                    Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
+                    Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
+                    ParamUtil.getString(actionRequest, "description"));
+        }
+    }
+
+    @ProcessAction(name = "deleteElectronics")
+    public boolean deleteElectronics(ActionRequest actionRequest, ActionResponse actionResponse) {
+        System.out.println("dsa");
+        long id = Long.parseLong(ParamUtil.getString(actionRequest, "ElectronicsId"));
+        try {
+            electronicsLocalService.deleteElectronics(id);
+        } catch (PortalException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -78,4 +109,8 @@ public class ElectroAddAction implements MVCActionCommand {
     }
 
     ElectronicsLocalService electronicsLocalService;
+
+    @Override
+    protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
+    }
 }

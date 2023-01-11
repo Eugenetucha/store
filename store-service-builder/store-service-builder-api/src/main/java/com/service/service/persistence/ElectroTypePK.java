@@ -84,11 +84,7 @@ public class ElectroTypePK implements Comparable<ElectroTypePK>, Serializable {
 			value = 0;
 		}
 
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
+		return value;
 	}
 
 	@Override
@@ -103,14 +99,8 @@ public class ElectroTypePK implements Comparable<ElectroTypePK>, Serializable {
 
 		ElectroTypePK pk = (ElectroTypePK)object;
 
-		if ((electroTypeId == pk.electroTypeId) &&
-			(companyId == pk.companyId)) {
-
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (electroTypeId == pk.electroTypeId) &&
+				(companyId == pk.companyId);
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param uuid the uuid
 	 * @return the matching employees
 	 */
-	public java.util.List<Employee> findByUuid(String uuid);
+    java.util.List<Employee> findByUuid(String uuid);
 
 	/**
 	 * Returns a range of all the employees where uuid = &#63;.
@@ -61,7 +61,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param end the upper bound of the range of employees (not inclusive)
 	 * @return the range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid(String uuid, int start, int end);
+    java.util.List<Employee> findByUuid(String uuid, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the employees where uuid = &#63;.
@@ -76,7 +76,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid(
+    java.util.List<Employee> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -95,7 +95,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid(
+    java.util.List<Employee> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator,
@@ -109,7 +109,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the first matching employee
 	 * @throws NoSuchEmployeeException if a matching employee could not be found
 	 */
-	public Employee findByUuid_First(
+    Employee findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -122,7 +122,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching employee, or <code>null</code> if a matching employee could not be found
 	 */
-	public Employee fetchByUuid_First(
+    Employee fetchByUuid_First(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -135,7 +135,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the last matching employee
 	 * @throws NoSuchEmployeeException if a matching employee could not be found
 	 */
-	public Employee findByUuid_Last(
+    Employee findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -148,7 +148,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching employee, or <code>null</code> if a matching employee could not be found
 	 */
-	public Employee fetchByUuid_Last(
+    Employee fetchByUuid_Last(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -162,7 +162,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the previous, current, and next employee
 	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
 	 */
-	public Employee[] findByUuid_PrevAndNext(
+    Employee[] findByUuid_PrevAndNext(
 			long employeeId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -173,7 +173,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 *
 	 * @param uuid the uuid
 	 */
-	public void removeByUuid(String uuid);
+    void removeByUuid(String uuid);
 
 	/**
 	 * Returns the number of employees where uuid = &#63;.
@@ -181,7 +181,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param uuid the uuid
 	 * @return the number of matching employees
 	 */
-	public int countByUuid(String uuid);
+    int countByUuid(String uuid);
 
 	/**
 	 * Returns all the employees where uuid = &#63; and companyId = &#63;.
@@ -190,7 +190,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param companyId the company ID
 	 * @return the matching employees
 	 */
-	public java.util.List<Employee> findByUuid_C(String uuid, long companyId);
+    java.util.List<Employee> findByUuid_C(String uuid, long companyId);
 
 	/**
 	 * Returns a range of all the employees where uuid = &#63; and companyId = &#63;.
@@ -205,7 +205,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param end the upper bound of the range of employees (not inclusive)
 	 * @return the range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid_C(
+    java.util.List<Employee> findByUuid_C(
 		String uuid, long companyId, int start, int end);
 
 	/**
@@ -222,7 +222,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid_C(
+    java.util.List<Employee> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -242,7 +242,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching employees
 	 */
-	public java.util.List<Employee> findByUuid_C(
+    java.util.List<Employee> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator,
@@ -257,7 +257,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the first matching employee
 	 * @throws NoSuchEmployeeException if a matching employee could not be found
 	 */
-	public Employee findByUuid_C_First(
+    Employee findByUuid_C_First(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -271,7 +271,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching employee, or <code>null</code> if a matching employee could not be found
 	 */
-	public Employee fetchByUuid_C_First(
+    Employee fetchByUuid_C_First(
 		String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -285,7 +285,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the last matching employee
 	 * @throws NoSuchEmployeeException if a matching employee could not be found
 	 */
-	public Employee findByUuid_C_Last(
+    Employee findByUuid_C_Last(
 			String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -299,7 +299,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching employee, or <code>null</code> if a matching employee could not be found
 	 */
-	public Employee fetchByUuid_C_Last(
+    Employee fetchByUuid_C_Last(
 		String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -314,7 +314,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the previous, current, and next employee
 	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
 	 */
-	public Employee[] findByUuid_C_PrevAndNext(
+    Employee[] findByUuid_C_PrevAndNext(
 			long employeeId, String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<Employee>
 				orderByComparator)
@@ -326,7 +326,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 */
-	public void removeByUuid_C(String uuid, long companyId);
+    void removeByUuid_C(String uuid, long companyId);
 
 	/**
 	 * Returns the number of employees where uuid = &#63; and companyId = &#63;.
@@ -335,21 +335,21 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param companyId the company ID
 	 * @return the number of matching employees
 	 */
-	public int countByUuid_C(String uuid, long companyId);
+    int countByUuid_C(String uuid, long companyId);
 
 	/**
 	 * Caches the employee in the entity cache if it is enabled.
 	 *
 	 * @param employee the employee
 	 */
-	public void cacheResult(Employee employee);
+    void cacheResult(Employee employee);
 
 	/**
 	 * Caches the employees in the entity cache if it is enabled.
 	 *
 	 * @param employees the employees
 	 */
-	public void cacheResult(java.util.List<Employee> employees);
+    void cacheResult(java.util.List<Employee> employees);
 
 	/**
 	 * Creates a new employee with the primary key. Does not add the employee to the database.
@@ -357,7 +357,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param employeeId the primary key for the new employee
 	 * @return the new employee
 	 */
-	public Employee create(long employeeId);
+    Employee create(long employeeId);
 
 	/**
 	 * Removes the employee with the primary key from the database. Also notifies the appropriate model listeners.
@@ -366,9 +366,9 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the employee that was removed
 	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
 	 */
-	public Employee remove(long employeeId) throws NoSuchEmployeeException;
+    Employee remove(long employeeId) throws NoSuchEmployeeException;
 
-	public Employee updateImpl(Employee employee);
+	Employee updateImpl(Employee employee);
 
 	/**
 	 * Returns the employee with the primary key or throws a <code>NoSuchEmployeeException</code> if it could not be found.
@@ -377,7 +377,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @return the employee
 	 * @throws NoSuchEmployeeException if a employee with the primary key could not be found
 	 */
-	public Employee findByPrimaryKey(long employeeId)
+    Employee findByPrimaryKey(long employeeId)
 		throws NoSuchEmployeeException;
 
 	/**
@@ -386,14 +386,14 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param employeeId the primary key of the employee
 	 * @return the employee, or <code>null</code> if a employee with the primary key could not be found
 	 */
-	public Employee fetchByPrimaryKey(long employeeId);
+    Employee fetchByPrimaryKey(long employeeId);
 
 	/**
 	 * Returns all the employees.
 	 *
 	 * @return the employees
 	 */
-	public java.util.List<Employee> findAll();
+    java.util.List<Employee> findAll();
 
 	/**
 	 * Returns a range of all the employees.
@@ -406,7 +406,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param end the upper bound of the range of employees (not inclusive)
 	 * @return the range of employees
 	 */
-	public java.util.List<Employee> findAll(int start, int end);
+    java.util.List<Employee> findAll(int start, int end);
 
 	/**
 	 * Returns an ordered range of all the employees.
@@ -420,7 +420,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of employees
 	 */
-	public java.util.List<Employee> findAll(
+    java.util.List<Employee> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -438,7 +438,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of employees
 	 */
-	public java.util.List<Employee> findAll(
+    java.util.List<Employee> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator,
@@ -447,14 +447,14 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	/**
 	 * Removes all the employees from the database.
 	 */
-	public void removeAll();
+    void removeAll();
 
 	/**
 	 * Returns the number of employees.
 	 *
 	 * @return the number of employees
 	 */
-	public int countAll();
+    int countAll();
 
 	/**
 	 * Returns the primaryKeys of electro types associated with the employee.
@@ -462,7 +462,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @return long[] of the primaryKeys of electro types associated with the employee
 	 */
-	public long[] getElectroTypePrimaryKeys(long pk);
+    long[] getElectroTypePrimaryKeys(long pk);
 
 	/**
 	 * Returns all the employee associated with the electro type.
@@ -470,7 +470,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the electro type
 	 * @return the employees associated with the electro type
 	 */
-	public java.util.List<Employee> getElectroTypeEmployees(long pk);
+    java.util.List<Employee> getElectroTypeEmployees(long pk);
 
 	/**
 	 * Returns all the employee associated with the electro type.
@@ -484,7 +484,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param end the upper bound of the range of electro types (not inclusive)
 	 * @return the range of employees associated with the electro type
 	 */
-	public java.util.List<Employee> getElectroTypeEmployees(
+    java.util.List<Employee> getElectroTypeEmployees(
 		long pk, int start, int end);
 
 	/**
@@ -500,7 +500,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of employees associated with the electro type
 	 */
-	public java.util.List<Employee> getElectroTypeEmployees(
+    java.util.List<Employee> getElectroTypeEmployees(
 		long pk, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Employee>
 			orderByComparator);
@@ -511,7 +511,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @return the number of electro types associated with the employee
 	 */
-	public int getElectroTypesSize(long pk);
+    int getElectroTypesSize(long pk);
 
 	/**
 	 * Returns <code>true</code> if the electro type is associated with the employee.
@@ -520,7 +520,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param electroTypePK the primary key of the electro type
 	 * @return <code>true</code> if the electro type is associated with the employee; <code>false</code> otherwise
 	 */
-	public boolean containsElectroType(long pk, long electroTypePK);
+    boolean containsElectroType(long pk, long electroTypePK);
 
 	/**
 	 * Returns <code>true</code> if the employee has any electro types associated with it.
@@ -528,7 +528,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee to check for associations with electro types
 	 * @return <code>true</code> if the employee has any electro types associated with it; <code>false</code> otherwise
 	 */
-	public boolean containsElectroTypes(long pk);
+    boolean containsElectroTypes(long pk);
 
 	/**
 	 * Adds an association between the employee and the electro type. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -536,7 +536,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypePK the primary key of the electro type
 	 */
-	public void addElectroType(long pk, long electroTypePK);
+    void addElectroType(long pk, long electroTypePK);
 
 	/**
 	 * Adds an association between the employee and the electro type. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -544,7 +544,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroType the electro type
 	 */
-	public void addElectroType(
+    void addElectroType(
 		long pk, com.service.model.ElectroType electroType);
 
 	/**
@@ -553,7 +553,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypePKs the primary keys of the electro types
 	 */
-	public void addElectroTypes(long pk, long[] electroTypePKs);
+    void addElectroTypes(long pk, long[] electroTypePKs);
 
 	/**
 	 * Adds an association between the employee and the electro types. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -561,7 +561,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypes the electro types
 	 */
-	public void addElectroTypes(
+    void addElectroTypes(
 		long pk, java.util.List<com.service.model.ElectroType> electroTypes);
 
 	/**
@@ -569,7 +569,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 *
 	 * @param pk the primary key of the employee to clear the associated electro types from
 	 */
-	public void clearElectroTypes(long pk);
+    void clearElectroTypes(long pk);
 
 	/**
 	 * Removes the association between the employee and the electro type. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -577,7 +577,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypePK the primary key of the electro type
 	 */
-	public void removeElectroType(long pk, long electroTypePK);
+    void removeElectroType(long pk, long electroTypePK);
 
 	/**
 	 * Removes the association between the employee and the electro type. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -585,7 +585,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroType the electro type
 	 */
-	public void removeElectroType(
+    void removeElectroType(
 		long pk, com.service.model.ElectroType electroType);
 
 	/**
@@ -594,7 +594,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypePKs the primary keys of the electro types
 	 */
-	public void removeElectroTypes(long pk, long[] electroTypePKs);
+    void removeElectroTypes(long pk, long[] electroTypePKs);
 
 	/**
 	 * Removes the association between the employee and the electro types. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -602,7 +602,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypes the electro types
 	 */
-	public void removeElectroTypes(
+    void removeElectroTypes(
 		long pk, java.util.List<com.service.model.ElectroType> electroTypes);
 
 	/**
@@ -611,7 +611,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypePKs the primary keys of the electro types to be associated with the employee
 	 */
-	public void setElectroTypes(long pk, long[] electroTypePKs);
+    void setElectroTypes(long pk, long[] electroTypePKs);
 
 	/**
 	 * Sets the electro types associated with the employee, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
@@ -619,7 +619,7 @@ public interface EmployeePersistence extends BasePersistence<Employee> {
 	 * @param pk the primary key of the employee
 	 * @param electroTypes the electro types to be associated with the employee
 	 */
-	public void setElectroTypes(
+    void setElectroTypes(
 		long pk, java.util.List<com.service.model.ElectroType> electroTypes);
 
 }

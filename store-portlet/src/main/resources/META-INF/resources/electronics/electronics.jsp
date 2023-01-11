@@ -2,9 +2,9 @@
 <p>
 	<b><liferay-ui:message key="store.electronics"/></b>
 </p>
-<portlet:renderURL var="action_URL">
-<portlet:param name="mvcRenderCommandName" value="/electronics/add_electronics" />
-</portlet:renderURL>
+<portlet:actionURL var="action_URL">
+<portlet:param name="javax.portlet.action" value="addElectronicsView" />
+</portlet:actionURL>
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 <liferay-ui:search-container total="${total}"
                             delta="10"
@@ -18,12 +18,13 @@
        <liferay-ui:search-container-column-text name="price" property ="price"/>
        <liferay-ui:search-container-column-text name="actions">
            <liferay-ui:icon-menu direction="left-side" icon="" markupView="lexicon" message="actions" showWhenSingleIcon="<%= true %>">
-               <portlet:renderURL var="editElectronics">
-                   <portlet:param name="mvcRenderCommandName" value="/electronics/update_electronics" />
+               <portlet:actionURL var="editElectronics">
+                   <portlet:param name="javax.portlet.action" value="updateElectronicsView" />
                    <portlet:param name="ElectronicsId" value="<%= String.valueOf(electronics.getElectronicsId()) %>" />
-               </portlet:renderURL>
+               </portlet:actionURL>
                <liferay-ui:icon message="edit" url="${editElectronics}" />
-               <portlet:actionURL var="deleteElectronics" name="/electronics/delete_electronics/what">
+               <portlet:actionURL var="deleteElectronics">
+                   <portlet:param name="javax.portlet.action" value="deleteElectronics" />
                    <portlet:param name="ElectronicsId" value="<%= String.valueOf(electronics.getElectronicsId()) %>" />
                </portlet:actionURL>
                <liferay-ui:icon message="delete" url="${deleteElectronics}" />

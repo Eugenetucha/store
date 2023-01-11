@@ -47,7 +47,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param uuid the uuid
 	 * @return the matching position types
 	 */
-	public java.util.List<PositionType> findByUuid(String uuid);
+    java.util.List<PositionType> findByUuid(String uuid);
 
 	/**
 	 * Returns a range of all the position types where uuid = &#63;.
@@ -61,7 +61,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param end the upper bound of the range of position types (not inclusive)
 	 * @return the range of matching position types
 	 */
-	public java.util.List<PositionType> findByUuid(
+    java.util.List<PositionType> findByUuid(
 		String uuid, int start, int end);
 
 	/**
@@ -77,7 +77,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching position types
 	 */
-	public java.util.List<PositionType> findByUuid(
+    java.util.List<PositionType> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator);
@@ -96,7 +96,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching position types
 	 */
-	public java.util.List<PositionType> findByUuid(
+    java.util.List<PositionType> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator,
@@ -110,7 +110,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @return the first matching position type
 	 * @throws NoSuchPositionTypeException if a matching position type could not be found
 	 */
-	public PositionType findByUuid_First(
+    PositionType findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 				orderByComparator)
@@ -123,7 +123,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching position type, or <code>null</code> if a matching position type could not be found
 	 */
-	public PositionType fetchByUuid_First(
+    PositionType fetchByUuid_First(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator);
@@ -136,7 +136,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @return the last matching position type
 	 * @throws NoSuchPositionTypeException if a matching position type could not be found
 	 */
-	public PositionType findByUuid_Last(
+    PositionType findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 				orderByComparator)
@@ -149,7 +149,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching position type, or <code>null</code> if a matching position type could not be found
 	 */
-	public PositionType fetchByUuid_Last(
+    PositionType fetchByUuid_Last(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator);
@@ -163,7 +163,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @return the previous, current, and next position type
 	 * @throws NoSuchPositionTypeException if a position type with the primary key could not be found
 	 */
-	public PositionType[] findByUuid_PrevAndNext(
+    PositionType[] findByUuid_PrevAndNext(
 			long positionTypeId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 				orderByComparator)
@@ -174,7 +174,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 *
 	 * @param uuid the uuid
 	 */
-	public void removeByUuid(String uuid);
+    void removeByUuid(String uuid);
 
 	/**
 	 * Returns the number of position types where uuid = &#63;.
@@ -182,21 +182,21 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param uuid the uuid
 	 * @return the number of matching position types
 	 */
-	public int countByUuid(String uuid);
+    int countByUuid(String uuid);
 
 	/**
 	 * Caches the position type in the entity cache if it is enabled.
 	 *
 	 * @param positionType the position type
 	 */
-	public void cacheResult(PositionType positionType);
+    void cacheResult(PositionType positionType);
 
 	/**
 	 * Caches the position types in the entity cache if it is enabled.
 	 *
 	 * @param positionTypes the position types
 	 */
-	public void cacheResult(java.util.List<PositionType> positionTypes);
+    void cacheResult(java.util.List<PositionType> positionTypes);
 
 	/**
 	 * Creates a new position type with the primary key. Does not add the position type to the database.
@@ -204,7 +204,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param positionTypeId the primary key for the new position type
 	 * @return the new position type
 	 */
-	public PositionType create(long positionTypeId);
+    PositionType create(long positionTypeId);
 
 	/**
 	 * Removes the position type with the primary key from the database. Also notifies the appropriate model listeners.
@@ -213,10 +213,10 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @return the position type that was removed
 	 * @throws NoSuchPositionTypeException if a position type with the primary key could not be found
 	 */
-	public PositionType remove(long positionTypeId)
+    PositionType remove(long positionTypeId)
 		throws NoSuchPositionTypeException;
 
-	public PositionType updateImpl(PositionType positionType);
+	PositionType updateImpl(PositionType positionType);
 
 	/**
 	 * Returns the position type with the primary key or throws a <code>NoSuchPositionTypeException</code> if it could not be found.
@@ -225,7 +225,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @return the position type
 	 * @throws NoSuchPositionTypeException if a position type with the primary key could not be found
 	 */
-	public PositionType findByPrimaryKey(long positionTypeId)
+    PositionType findByPrimaryKey(long positionTypeId)
 		throws NoSuchPositionTypeException;
 
 	/**
@@ -234,14 +234,14 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param positionTypeId the primary key of the position type
 	 * @return the position type, or <code>null</code> if a position type with the primary key could not be found
 	 */
-	public PositionType fetchByPrimaryKey(long positionTypeId);
+    PositionType fetchByPrimaryKey(long positionTypeId);
 
 	/**
 	 * Returns all the position types.
 	 *
 	 * @return the position types
 	 */
-	public java.util.List<PositionType> findAll();
+    java.util.List<PositionType> findAll();
 
 	/**
 	 * Returns a range of all the position types.
@@ -254,7 +254,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param end the upper bound of the range of position types (not inclusive)
 	 * @return the range of position types
 	 */
-	public java.util.List<PositionType> findAll(int start, int end);
+    java.util.List<PositionType> findAll(int start, int end);
 
 	/**
 	 * Returns an ordered range of all the position types.
@@ -268,7 +268,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of position types
 	 */
-	public java.util.List<PositionType> findAll(
+    java.util.List<PositionType> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator);
@@ -286,7 +286,7 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of position types
 	 */
-	public java.util.List<PositionType> findAll(
+    java.util.List<PositionType> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PositionType>
 			orderByComparator,
@@ -295,13 +295,13 @@ public interface PositionTypePersistence extends BasePersistence<PositionType> {
 	/**
 	 * Removes all the position types from the database.
 	 */
-	public void removeAll();
+    void removeAll();
 
 	/**
 	 * Returns the number of position types.
 	 *
 	 * @return the number of position types
 	 */
-	public int countAll();
+    int countAll();
 
 }

@@ -44,14 +44,14 @@ public interface ElectronicsModel extends BaseModel<Electronics> {
 	 *
 	 * @return the primary key of this electronics
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this electronics.
 	 *
 	 * @param primaryKey the primary key of this electronics
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this electronics.
@@ -59,28 +59,28 @@ public interface ElectronicsModel extends BaseModel<Electronics> {
 	 * @return the uuid of this electronics
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this electronics.
 	 *
 	 * @param uuid the uuid of this electronics
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the electronics ID of this electronics.
 	 *
 	 * @return the electronics ID of this electronics
 	 */
-	public long getElectronicsId();
+    long getElectronicsId();
 
 	/**
 	 * Sets the electronics ID of this electronics.
 	 *
 	 * @param electronicsId the electronics ID of this electronics
 	 */
-	public void setElectronicsId(long electronicsId);
+    void setElectronicsId(long electronicsId);
 
 	/**
 	 * Returns the name of this electronics.
@@ -88,98 +88,98 @@ public interface ElectronicsModel extends BaseModel<Electronics> {
 	 * @return the name of this electronics
 	 */
 	@AutoEscape
-	public String getName();
+    String getName();
 
 	/**
 	 * Sets the name of this electronics.
 	 *
 	 * @param name the name of this electronics
 	 */
-	public void setName(String name);
+    void setName(String name);
 
 	/**
 	 * Returns the electro type ID of this electronics.
 	 *
 	 * @return the electro type ID of this electronics
 	 */
-	public long getElectroTypeId();
+    long getElectroTypeId();
 
 	/**
 	 * Sets the electro type ID of this electronics.
 	 *
 	 * @param electroTypeId the electro type ID of this electronics
 	 */
-	public void setElectroTypeId(long electroTypeId);
+    void setElectroTypeId(long electroTypeId);
 
 	/**
 	 * Returns the price of this electronics.
 	 *
 	 * @return the price of this electronics
 	 */
-	public long getPrice();
+    long getPrice();
 
 	/**
 	 * Sets the price of this electronics.
 	 *
 	 * @param price the price of this electronics
 	 */
-	public void setPrice(long price);
+    void setPrice(long price);
 
 	/**
 	 * Returns the electronics_count of this electronics.
 	 *
 	 * @return the electronics_count of this electronics
 	 */
-	public int getElectronics_count();
+    int getElectronics_count();
 
 	/**
 	 * Sets the electronics_count of this electronics.
 	 *
 	 * @param electronics_count the electronics_count of this electronics
 	 */
-	public void setElectronics_count(int electronics_count);
+    void setElectronics_count(int electronics_count);
 
 	/**
 	 * Returns the in stock of this electronics.
 	 *
 	 * @return the in stock of this electronics
 	 */
-	public boolean getInStock();
+    boolean getInStock();
 
 	/**
 	 * Returns <code>true</code> if this electronics is in stock.
 	 *
 	 * @return <code>true</code> if this electronics is in stock; <code>false</code> otherwise
 	 */
-	public boolean isInStock();
+    boolean isInStock();
 
 	/**
 	 * Sets whether this electronics is in stock.
 	 *
 	 * @param inStock the in stock of this electronics
 	 */
-	public void setInStock(boolean inStock);
+    void setInStock(boolean inStock);
 
 	/**
 	 * Returns the archive of this electronics.
 	 *
 	 * @return the archive of this electronics
 	 */
-	public boolean getArchive();
+    boolean getArchive();
 
 	/**
 	 * Returns <code>true</code> if this electronics is archive.
 	 *
 	 * @return <code>true</code> if this electronics is archive; <code>false</code> otherwise
 	 */
-	public boolean isArchive();
+    boolean isArchive();
 
 	/**
 	 * Sets whether this electronics is archive.
 	 *
 	 * @param archive the archive of this electronics
 	 */
-	public void setArchive(boolean archive);
+    void setArchive(boolean archive);
 
 	/**
 	 * Returns the description of this electronics.
@@ -187,13 +187,13 @@ public interface ElectronicsModel extends BaseModel<Electronics> {
 	 * @return the description of this electronics
 	 */
 	@AutoEscape
-	public String getDescription();
+    String getDescription();
 
 	/**
 	 * Sets the description of this electronics.
 	 *
 	 * @param description the description of this electronics
 	 */
-	public void setDescription(String description);
+    void setDescription(String description);
 
 }

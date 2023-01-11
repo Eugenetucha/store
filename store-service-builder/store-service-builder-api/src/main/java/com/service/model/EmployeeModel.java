@@ -47,14 +47,14 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 *
 	 * @return the primary key of this employee
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this employee.
 	 *
 	 * @param primaryKey the primary key of this employee
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this employee.
@@ -62,28 +62,28 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @return the uuid of this employee
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this employee.
 	 *
 	 * @param uuid the uuid of this employee
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the employee ID of this employee.
 	 *
 	 * @return the employee ID of this employee
 	 */
-	public long getEmployeeId();
+    long getEmployeeId();
 
 	/**
 	 * Sets the employee ID of this employee.
 	 *
 	 * @param employeeId the employee ID of this employee
 	 */
-	public void setEmployeeId(long employeeId);
+    void setEmployeeId(long employeeId);
 
 	/**
 	 * Returns the lastname of this employee.
@@ -91,14 +91,14 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @return the lastname of this employee
 	 */
 	@AutoEscape
-	public String getLastname();
+    String getLastname();
 
 	/**
 	 * Sets the lastname of this employee.
 	 *
 	 * @param lastname the lastname of this employee
 	 */
-	public void setLastname(String lastname);
+    void setLastname(String lastname);
 
 	/**
 	 * Returns the firstname of this employee.
@@ -106,14 +106,14 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @return the firstname of this employee
 	 */
 	@AutoEscape
-	public String getFirstname();
+    String getFirstname();
 
 	/**
 	 * Sets the firstname of this employee.
 	 *
 	 * @param firstname the firstname of this employee
 	 */
-	public void setFirstname(String firstname);
+    void setFirstname(String firstname);
 
 	/**
 	 * Returns the patronymic of this employee.
@@ -121,63 +121,63 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @return the patronymic of this employee
 	 */
 	@AutoEscape
-	public String getPatronymic();
+    String getPatronymic();
 
 	/**
 	 * Sets the patronymic of this employee.
 	 *
 	 * @param patronymic the patronymic of this employee
 	 */
-	public void setPatronymic(String patronymic);
+    void setPatronymic(String patronymic);
 
 	/**
 	 * Returns the birthdate of this employee.
 	 *
 	 * @return the birthdate of this employee
 	 */
-	public Date getBirthdate();
+    Date getBirthdate();
 
 	/**
 	 * Sets the birthdate of this employee.
 	 *
 	 * @param birthdate the birthdate of this employee
 	 */
-	public void setBirthdate(Date birthdate);
+    void setBirthdate(Date birthdate);
 
 	/**
 	 * Returns the position type ID of this employee.
 	 *
 	 * @return the position type ID of this employee
 	 */
-	public long getPositionTypeId();
+    long getPositionTypeId();
 
 	/**
 	 * Sets the position type ID of this employee.
 	 *
 	 * @param PositionTypeId the position type ID of this employee
 	 */
-	public void setPositionTypeId(long PositionTypeId);
+    void setPositionTypeId(long PositionTypeId);
 
 	/**
 	 * Returns the gender of this employee.
 	 *
 	 * @return the gender of this employee
 	 */
-	public boolean getGender();
+    boolean getGender();
 
 	/**
 	 * Returns <code>true</code> if this employee is gender.
 	 *
 	 * @return <code>true</code> if this employee is gender; <code>false</code> otherwise
 	 */
-	public boolean isGender();
+    boolean isGender();
 
 	/**
 	 * Sets whether this employee is gender.
 	 *
 	 * @param gender the gender of this employee
 	 */
-	public void setGender(boolean gender);
+    void setGender(boolean gender);
 
 	/**
 	 * Returns the company ID of this employee.
@@ -185,7 +185,7 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @return the company ID of this employee
 	 */
 	@Override
-	public long getCompanyId();
+    long getCompanyId();
 
 	/**
 	 * Sets the company ID of this employee.
@@ -193,6 +193,6 @@ public interface EmployeeModel extends BaseModel<Employee>, ShardedModel {
 	 * @param companyId the company ID of this employee
 	 */
 	@Override
-	public void setCompanyId(long companyId);
+    void setCompanyId(long companyId);
 
 }

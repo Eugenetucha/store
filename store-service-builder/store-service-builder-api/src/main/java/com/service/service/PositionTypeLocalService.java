@@ -61,7 +61,7 @@ public interface PositionTypeLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.service.service.impl.PositionTypeLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the position type local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PositionTypeLocalServiceUtil} if injection and service tracking are not available.
 	 */
-	public PositionType addPositionType(Long id, String name);
+    PositionType addPositionType(Long id, String name);
 
 	/**
 	 * Adds the position type to the database. Also notifies the appropriate model listeners.
@@ -74,12 +74,12 @@ public interface PositionTypeLocalService
 	 * @return the position type that was added
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public PositionType addPositionType(PositionType positionType);
+    PositionType addPositionType(PositionType positionType);
 
 	/**
 	 * @throws PortalException
 	 */
-	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+    PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -89,13 +89,13 @@ public interface PositionTypeLocalService
 	 * @return the new position type
 	 */
 	@Transactional(enabled = false)
-	public PositionType createPositionType(long positionTypeId);
+    PositionType createPositionType(long positionTypeId);
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+    PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -110,7 +110,7 @@ public interface PositionTypeLocalService
 	 * @throws PortalException if a position type with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public PositionType deletePositionType(long positionTypeId)
+    PositionType deletePositionType(long positionTypeId)
 		throws PortalException;
 
 	/**
@@ -124,10 +124,10 @@ public interface PositionTypeLocalService
 	 * @return the position type that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public PositionType deletePositionType(PositionType positionType);
+    PositionType deletePositionType(PositionType positionType);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery dynamicQuery();
+    DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
@@ -136,7 +136,7 @@ public interface PositionTypeLocalService
 	 * @return the matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
+    <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
@@ -151,7 +151,7 @@ public interface PositionTypeLocalService
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
@@ -168,7 +168,7 @@ public interface PositionTypeLocalService
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<T> orderByComparator);
 
@@ -179,7 +179,7 @@ public interface PositionTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+    long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -189,31 +189,31 @@ public interface PositionTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
+    long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PositionType fetchPositionType(long positionTypeId);
+    PositionType fetchPositionType(long positionTypeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+    ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+    IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+    PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -224,7 +224,7 @@ public interface PositionTypeLocalService
 	 * @throws PortalException if a position type with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PositionType getPositionType(long positionTypeId)
+    PositionType getPositionType(long positionTypeId)
 		throws PortalException;
 
 	/**
@@ -239,7 +239,7 @@ public interface PositionTypeLocalService
 	 * @return the range of position types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<PositionType> getPositionTypes(int start, int end);
+    List<PositionType> getPositionTypes(int start, int end);
 
 	/**
 	 * Returns the number of position types.
@@ -247,7 +247,7 @@ public interface PositionTypeLocalService
 	 * @return the number of position types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPositionTypesCount();
+    int getPositionTypesCount();
 
 	/**
 	 * Updates the position type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -260,6 +260,6 @@ public interface PositionTypeLocalService
 	 * @return the position type that was updated
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public PositionType updatePositionType(PositionType positionType);
+    PositionType updatePositionType(PositionType positionType);
 
 }

@@ -62,14 +62,14 @@ public interface EmployeeLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.service.service.impl.EmployeeLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the employee local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link EmployeeLocalServiceUtil} if injection and service tracking are not available.
 	 */
-	public void addElectroTypeEmployee(long electroTypeId, Employee employee);
+    void addElectroTypeEmployee(long electroTypeId, Employee employee);
 
-	public void addElectroTypeEmployee(long electroTypeId, long employeeId);
+	void addElectroTypeEmployee(long electroTypeId, long employeeId);
 
-	public void addElectroTypeEmployees(
+	void addElectroTypeEmployees(
 		long electroTypeId, List<Employee> employees);
 
-	public void addElectroTypeEmployees(long electroTypeId, long[] employeeIds);
+	void addElectroTypeEmployees(long electroTypeId, long[] employeeIds);
 
 	/**
 	 * Adds the employee to the database. Also notifies the appropriate model listeners.
@@ -82,17 +82,17 @@ public interface EmployeeLocalService
 	 * @return the employee that was added
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public Employee addEmployee(Employee employee);
+    Employee addEmployee(Employee employee);
 
-	public Employee addEmployee(
+	Employee addEmployee(
 		Long id, String lastname, String firstname, String patronymic,
 		Date birthdate, Long PositionTypeId, boolean gender);
 
-	public Employee addEmployee(
+	Employee addEmployee(
 		String lastname, String firstname, String patronymic, Date birthdate,
 		Long PositionTypeId, boolean gender);
 
-	public void clearElectroTypeEmployees(long electroTypeId);
+	void clearElectroTypeEmployees(long electroTypeId);
 
 	/**
 	 * Creates a new employee with the primary key. Does not add the employee to the database.
@@ -101,23 +101,23 @@ public interface EmployeeLocalService
 	 * @return the new employee
 	 */
 	@Transactional(enabled = false)
-	public Employee createEmployee(long employeeId);
+    Employee createEmployee(long employeeId);
 
 	/**
 	 * @throws PortalException
 	 */
-	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+    PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
-	public void deleteElectroTypeEmployee(
+	void deleteElectroTypeEmployee(
 		long electroTypeId, Employee employee);
 
-	public void deleteElectroTypeEmployee(long electroTypeId, long employeeId);
+	void deleteElectroTypeEmployee(long electroTypeId, long employeeId);
 
-	public void deleteElectroTypeEmployees(
+	void deleteElectroTypeEmployees(
 		long electroTypeId, List<Employee> employees);
 
-	public void deleteElectroTypeEmployees(
+	void deleteElectroTypeEmployees(
 		long electroTypeId, long[] employeeIds);
 
 	/**
@@ -131,7 +131,7 @@ public interface EmployeeLocalService
 	 * @return the employee that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Employee deleteEmployee(Employee employee);
+    Employee deleteEmployee(Employee employee);
 
 	/**
 	 * Deletes the employee with the primary key from the database. Also notifies the appropriate model listeners.
@@ -145,17 +145,17 @@ public interface EmployeeLocalService
 	 * @throws PortalException if a employee with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Employee deleteEmployee(long employeeId) throws PortalException;
+    Employee deleteEmployee(long employeeId) throws PortalException;
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+    PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery dynamicQuery();
+    DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
@@ -164,7 +164,7 @@ public interface EmployeeLocalService
 	 * @return the matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
+    <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
@@ -179,7 +179,7 @@ public interface EmployeeLocalService
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
@@ -196,7 +196,7 @@ public interface EmployeeLocalService
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<T> orderByComparator);
 
@@ -207,7 +207,7 @@ public interface EmployeeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+    long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -217,11 +217,11 @@ public interface EmployeeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
+    long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Employee fetchEmployee(long employeeId);
+    Employee fetchEmployee(long employeeId);
 
 	/**
 	 * Returns the employee with the matching UUID and company.
@@ -231,26 +231,26 @@ public interface EmployeeLocalService
 	 * @return the matching employee, or <code>null</code> if a matching employee could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Employee fetchEmployeeByUuidAndCompanyId(
+    Employee fetchEmployeeByUuidAndCompanyId(
 		String uuid, long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+    ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Employee> getElectroTypeEmployees(long electroTypeId);
+    List<Employee> getElectroTypeEmployees(long electroTypeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Employee> getElectroTypeEmployees(
+    List<Employee> getElectroTypeEmployees(
 		long electroTypeId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Employee> getElectroTypeEmployees(
+    List<Employee> getElectroTypeEmployees(
 		long electroTypeId, int start, int end,
 		OrderByComparator<Employee> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getElectroTypeEmployeesCount(long electroTypeId);
+    int getElectroTypeEmployeesCount(long electroTypeId);
 
 	/**
 	 * Returns the electroTypeIds of the electro types associated with the employee.
@@ -259,7 +259,7 @@ public interface EmployeeLocalService
 	 * @return long[] the electroTypeIds of electro types associated with the employee
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getElectroTypePrimaryKeys(long employeeId);
+    long[] getElectroTypePrimaryKeys(long employeeId);
 
 	/**
 	 * Returns the employee with the primary key.
@@ -269,7 +269,7 @@ public interface EmployeeLocalService
 	 * @throws PortalException if a employee with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Employee getEmployee(long employeeId) throws PortalException;
+    Employee getEmployee(long employeeId) throws PortalException;
 
 	/**
 	 * Returns the employee with the matching UUID and company.
@@ -280,7 +280,7 @@ public interface EmployeeLocalService
 	 * @throws PortalException if a matching employee could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Employee getEmployeeByUuidAndCompanyId(String uuid, long companyId)
+    Employee getEmployeeByUuidAndCompanyId(String uuid, long companyId)
 		throws PortalException;
 
 	/**
@@ -295,7 +295,7 @@ public interface EmployeeLocalService
 	 * @return the range of employees
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Employee> getEmployees(int start, int end);
+    List<Employee> getEmployees(int start, int end);
 
 	/**
 	 * Returns the number of employees.
@@ -303,33 +303,33 @@ public interface EmployeeLocalService
 	 * @return the number of employees
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getEmployeesCount();
+    int getEmployeesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+    IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+    PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasElectroTypeEmployee(long electroTypeId, long employeeId);
+    boolean hasElectroTypeEmployee(long electroTypeId, long employeeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasElectroTypeEmployees(long electroTypeId);
+    boolean hasElectroTypeEmployees(long electroTypeId);
 
-	public void setElectroTypeEmployees(long electroTypeId, long[] employeeIds);
+	void setElectroTypeEmployees(long electroTypeId, long[] employeeIds);
 
 	/**
 	 * Updates the employee in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -342,9 +342,9 @@ public interface EmployeeLocalService
 	 * @return the employee that was updated
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public Employee updateEmployee(Employee employee);
+    Employee updateEmployee(Employee employee);
 
-	public Employee updateEmployeeddEmployee(
+	Employee updateEmployeeddEmployee(
 		String lastname, String firstname, String patronymic, Date birthdate,
 		Long PositionTypeId, boolean gender);
 

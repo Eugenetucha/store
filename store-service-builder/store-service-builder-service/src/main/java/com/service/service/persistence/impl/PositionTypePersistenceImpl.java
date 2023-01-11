@@ -1302,7 +1302,7 @@ public class PositionTypePersistenceImpl
 		return finderPath;
 	}
 
-	private Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
+	private final Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
 		new HashSet<>();
 	private ServiceRegistration<ArgumentsResolver>
 		_argumentsResolverServiceRegistration;
@@ -1342,7 +1342,7 @@ public class PositionTypePersistenceImpl
 
 				for (String columnName : columnNames) {
 					finderPathColumnBitmask |=
-						positionTypeModelImpl.getColumnBitmask(columnName);
+						PositionTypeModelImpl.getColumnBitmask(columnName);
 				}
 
 				_finderPathColumnBitmasksCache.put(

@@ -47,7 +47,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param uuid the uuid
 	 * @return the matching purchases
 	 */
-	public java.util.List<Purchase> findByUuid(String uuid);
+    java.util.List<Purchase> findByUuid(String uuid);
 
 	/**
 	 * Returns a range of all the purchases where uuid = &#63;.
@@ -61,7 +61,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param end the upper bound of the range of purchases (not inclusive)
 	 * @return the range of matching purchases
 	 */
-	public java.util.List<Purchase> findByUuid(String uuid, int start, int end);
+    java.util.List<Purchase> findByUuid(String uuid, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the purchases where uuid = &#63;.
@@ -76,7 +76,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching purchases
 	 */
-	public java.util.List<Purchase> findByUuid(
+    java.util.List<Purchase> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator);
@@ -95,7 +95,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching purchases
 	 */
-	public java.util.List<Purchase> findByUuid(
+    java.util.List<Purchase> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator,
@@ -109,7 +109,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @return the first matching purchase
 	 * @throws NoSuchPurchaseException if a matching purchase could not be found
 	 */
-	public Purchase findByUuid_First(
+    Purchase findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 				orderByComparator)
@@ -122,7 +122,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching purchase, or <code>null</code> if a matching purchase could not be found
 	 */
-	public Purchase fetchByUuid_First(
+    Purchase fetchByUuid_First(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator);
@@ -135,7 +135,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @return the last matching purchase
 	 * @throws NoSuchPurchaseException if a matching purchase could not be found
 	 */
-	public Purchase findByUuid_Last(
+    Purchase findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 				orderByComparator)
@@ -148,7 +148,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching purchase, or <code>null</code> if a matching purchase could not be found
 	 */
-	public Purchase fetchByUuid_Last(
+    Purchase fetchByUuid_Last(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator);
@@ -162,7 +162,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @return the previous, current, and next purchase
 	 * @throws NoSuchPurchaseException if a purchase with the primary key could not be found
 	 */
-	public Purchase[] findByUuid_PrevAndNext(
+    Purchase[] findByUuid_PrevAndNext(
 			long purchaseId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 				orderByComparator)
@@ -173,7 +173,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 *
 	 * @param uuid the uuid
 	 */
-	public void removeByUuid(String uuid);
+    void removeByUuid(String uuid);
 
 	/**
 	 * Returns the number of purchases where uuid = &#63;.
@@ -181,21 +181,21 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param uuid the uuid
 	 * @return the number of matching purchases
 	 */
-	public int countByUuid(String uuid);
+    int countByUuid(String uuid);
 
 	/**
 	 * Caches the purchase in the entity cache if it is enabled.
 	 *
 	 * @param purchase the purchase
 	 */
-	public void cacheResult(Purchase purchase);
+    void cacheResult(Purchase purchase);
 
 	/**
 	 * Caches the purchases in the entity cache if it is enabled.
 	 *
 	 * @param purchases the purchases
 	 */
-	public void cacheResult(java.util.List<Purchase> purchases);
+    void cacheResult(java.util.List<Purchase> purchases);
 
 	/**
 	 * Creates a new purchase with the primary key. Does not add the purchase to the database.
@@ -203,7 +203,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param purchaseId the primary key for the new purchase
 	 * @return the new purchase
 	 */
-	public Purchase create(long purchaseId);
+    Purchase create(long purchaseId);
 
 	/**
 	 * Removes the purchase with the primary key from the database. Also notifies the appropriate model listeners.
@@ -212,9 +212,9 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @return the purchase that was removed
 	 * @throws NoSuchPurchaseException if a purchase with the primary key could not be found
 	 */
-	public Purchase remove(long purchaseId) throws NoSuchPurchaseException;
+    Purchase remove(long purchaseId) throws NoSuchPurchaseException;
 
-	public Purchase updateImpl(Purchase purchase);
+	Purchase updateImpl(Purchase purchase);
 
 	/**
 	 * Returns the purchase with the primary key or throws a <code>NoSuchPurchaseException</code> if it could not be found.
@@ -223,7 +223,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @return the purchase
 	 * @throws NoSuchPurchaseException if a purchase with the primary key could not be found
 	 */
-	public Purchase findByPrimaryKey(long purchaseId)
+    Purchase findByPrimaryKey(long purchaseId)
 		throws NoSuchPurchaseException;
 
 	/**
@@ -232,14 +232,14 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param purchaseId the primary key of the purchase
 	 * @return the purchase, or <code>null</code> if a purchase with the primary key could not be found
 	 */
-	public Purchase fetchByPrimaryKey(long purchaseId);
+    Purchase fetchByPrimaryKey(long purchaseId);
 
 	/**
 	 * Returns all the purchases.
 	 *
 	 * @return the purchases
 	 */
-	public java.util.List<Purchase> findAll();
+    java.util.List<Purchase> findAll();
 
 	/**
 	 * Returns a range of all the purchases.
@@ -252,7 +252,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param end the upper bound of the range of purchases (not inclusive)
 	 * @return the range of purchases
 	 */
-	public java.util.List<Purchase> findAll(int start, int end);
+    java.util.List<Purchase> findAll(int start, int end);
 
 	/**
 	 * Returns an ordered range of all the purchases.
@@ -266,7 +266,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of purchases
 	 */
-	public java.util.List<Purchase> findAll(
+    java.util.List<Purchase> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator);
@@ -284,7 +284,7 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of purchases
 	 */
-	public java.util.List<Purchase> findAll(
+    java.util.List<Purchase> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Purchase>
 			orderByComparator,
@@ -293,13 +293,13 @@ public interface PurchasePersistence extends BasePersistence<Purchase> {
 	/**
 	 * Removes all the purchases from the database.
 	 */
-	public void removeAll();
+    void removeAll();
 
 	/**
 	 * Returns the number of purchases.
 	 *
 	 * @return the number of purchases
 	 */
-	public int countAll();
+    int countAll();
 
 }

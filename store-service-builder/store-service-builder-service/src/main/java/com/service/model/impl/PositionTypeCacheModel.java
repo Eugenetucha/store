@@ -47,11 +47,7 @@ public class PositionTypeCacheModel
 		PositionTypeCacheModel positionTypeCacheModel =
 			(PositionTypeCacheModel)object;
 
-		if (positionTypeId == positionTypeCacheModel.positionTypeId) {
-			return true;
-		}
-
-		return false;
+		return positionTypeId == positionTypeCacheModel.positionTypeId;
 	}
 
 	@Override

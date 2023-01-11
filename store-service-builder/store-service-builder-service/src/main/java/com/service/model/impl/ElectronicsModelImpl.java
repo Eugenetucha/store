@@ -600,12 +600,7 @@ public class ElectronicsModelImpl
 
 		long primaryKey = electronics.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getPrimaryKey() == primaryKey;
 	}
 
 	@Override

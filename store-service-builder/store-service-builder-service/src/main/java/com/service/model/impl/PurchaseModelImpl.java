@@ -484,11 +484,7 @@ public class PurchaseModelImpl
 		value = DateUtil.compareTo(
 			getPurchaseDate(), purchase.getPurchaseDate());
 
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
+		return value;
 	}
 
 	@Override
@@ -505,12 +501,7 @@ public class PurchaseModelImpl
 
 		long primaryKey = purchase.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getPrimaryKey() == primaryKey;
 	}
 
 	@Override

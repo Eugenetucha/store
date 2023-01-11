@@ -36,7 +36,7 @@ public interface ElectroType extends ElectroTypeModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.service.model.impl.ElectroTypeImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ElectroType, Long> ELECTRO_TYPE_ID_ACCESSOR =
+    Accessor<ElectroType, Long> ELECTRO_TYPE_ID_ACCESSOR =
 		new Accessor<ElectroType, Long>() {
 
 			@Override

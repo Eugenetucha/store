@@ -618,12 +618,7 @@ public class EmployeeModelImpl
 
 		long primaryKey = employee.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getPrimaryKey() == primaryKey;
 	}
 
 	@Override

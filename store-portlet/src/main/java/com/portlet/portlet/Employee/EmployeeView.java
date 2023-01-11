@@ -3,7 +3,6 @@ package com.portlet.portlet.Employee;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.portlet.constants.StorePortletKeys;
-import com.service.model.ElectroType;
 import com.service.service.ElectroTypeLocalService;
 import com.service.service.EmployeeLocalService;
 import org.osgi.service.component.annotations.Component;
@@ -34,6 +33,7 @@ public class EmployeeView implements MVCRenderCommand {
     protected void setEmployeeLocalService(EmployeeLocalService employeeLocalService) {
         this.employeeLocalService = employeeLocalService;
     }
+
     @Reference(unbind = "-")
     protected void setElectroTypeLocalService(ElectroTypeLocalService electroTypeLocalService) {
         this.electroTypeLocalService = electroTypeLocalService;

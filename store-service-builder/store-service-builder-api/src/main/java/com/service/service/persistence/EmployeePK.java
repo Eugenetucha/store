@@ -84,11 +84,7 @@ public class EmployeePK implements Comparable<EmployeePK>, Serializable {
 			value = 0;
 		}
 
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
+		return value;
 	}
 
 	@Override
@@ -103,12 +99,7 @@ public class EmployeePK implements Comparable<EmployeePK>, Serializable {
 
 		EmployeePK pk = (EmployeePK)object;
 
-		if ((employeeId == pk.employeeId) && (companyId == pk.companyId)) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (employeeId == pk.employeeId) && (companyId == pk.companyId);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import javax.portlet.PortletException;
                 "javax.portlet.name=" + StorePortletKeys.STORE,
                 "mvc.command.name=/purchase/delete_purchase/what"
         },
-        service=MVCActionCommand.class
+        service = MVCActionCommand.class
 )
 public class PurchaseDeleteAction implements MVCActionCommand {
     @Override

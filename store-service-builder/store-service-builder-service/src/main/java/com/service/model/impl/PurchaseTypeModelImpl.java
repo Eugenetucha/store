@@ -445,12 +445,7 @@ public class PurchaseTypeModelImpl
 
 		long primaryKey = purchaseType.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+        return getPrimaryKey() == primaryKey;
 	}
 
 	@Override
