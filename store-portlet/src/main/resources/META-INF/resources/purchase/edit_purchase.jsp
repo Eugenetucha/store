@@ -1,6 +1,7 @@
 <%@ include file="/init.jsp"%>
 <portlet:actionURL var="actionURL" name="/purchase/update_purchase/what">
-   <portlet:param name="add" value="/purchase/update_purchase/what" />
+   <portlet:param name="update" value="/purchase/update_purchase/what" />
+   <portlet:param name="updatePurchaseAction" value="updatePurchaseAction" />
 </portlet:actionURL>
 <aui:form name="myForm"  action="<%=actionURL%>" >
 		<aui:input name="ElectronicsId" id="ElectronicsId" label="ElectronicsId"/>

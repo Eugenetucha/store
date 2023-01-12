@@ -2,31 +2,24 @@
 <%
     out.println("Select the desired registry:");
 %>
-<portlet:renderURL var="action_URL1">
-<portlet:param name="mvcRenderCommandName" value="/electronics" />
-</portlet:renderURL>
-<portlet:renderURL var="action_URL2">
-<portlet:param name="mvcRenderCommandName" value="/purchase" />
-</portlet:renderURL>
-<portlet:actionURL var="doActionVariable" name="/data/add">
-   <portlet:param name="add" value="/data/add" />
-</portlet:actionURL>
-<portlet:renderURL var="action_URL3">
-<portlet:param name="mvcRenderCommandName" value="/employee" />
-</portlet:renderURL>
-<aui:form name="choose_registry">
-    <aui:button-row>
-        <aui:button value="Electronics" href="${action_URL1}"></aui:button>
-    </aui:button-row>
-    <aui:button-row>
-        <aui:button value="Purchase" href="${action_URL2}"></aui:button>
-    </aui:button-row>
-    <aui:button-row>
-        <aui:button value="Employee" href="${action_URL3}"></aui:button>
-    </aui:button-row>
-</aui:form>
-<portlet:actionURL name='uploadFileURL' var="uploadFileURL" windowState="normal" />
+<liferay-ui:tabs
+    names='<%= "Electronics,Purchase,Employee" %>'
+    param="tabs2"
+    refresh="<%= false %>"
+    type="tabs nav-tabs-default"
+>
+    <liferay-ui:section>
+        <%@ include file="/electronics/electronics.jsp" %>
+    </liferay-ui:section>
 
+    <liferay-ui:section>
+        <%@ include file="/purchase/purchase.jsp" %>
+    </liferay-ui:section>
+
+    <liferay-ui:section>
+        <%@ include file="/employee/employee.jsp" %>
+    </liferay-ui:section>
+</liferay-ui:tabs>
 <aui:form action="<%= uploadFileURL %>" method="POST" name="fm" enctype="multipart/form-data">
   <aui:fieldset>
 

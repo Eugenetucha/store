@@ -4,6 +4,7 @@
 </p>
 <portlet:renderURL var="action_URL">
 <portlet:param name="mvcRenderCommandName" value="/employee/add_employee" />
+<portlet:param name="employeeAdd" value="employeeAdd" />portlet:renderURL>
 </portlet:renderURL>
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 <liferay-ui:search-container total="${total}"
@@ -21,12 +22,13 @@
                <portlet:renderURL var="editEmployee">
                    <portlet:param name="mvcRenderCommandName" value="/employee/update_employee" />
                    <portlet:param name="EmployeeId" value="<%= String.valueOf(employee.getEmployeeId()) %>" />
-               </portlet:renderURL>
+                   <portlet:param name="employeeUpdate" value="employeeUpdate" />portlet:renderURL>
                <liferay-ui:icon message="edit" url="${editEmployee}" />
-               <portlet:actionURL var="deleteEmployee" name="/employee/delete_employee/what">
+               <portlet:actionURL var="deleteEmpl" name="/employee/delete_employee/what">
                    <portlet:param name="EmployeeId" value="<%= String.valueOf(employee.getEmployeeId()) %>" />
+                   <portlet:param name="employeeDeleteAction" value="employeeDeleteAction" />
                </portlet:actionURL>
-               <liferay-ui:icon message="delete" url="${deleteEmployee}" />
+               <liferay-ui:icon message="delete" url="${deleteEmpl}" />
            </liferay-ui:icon-menu>
            </liferay-ui:search-container-column-text>
    </liferay-ui:search-container-row>

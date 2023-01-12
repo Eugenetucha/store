@@ -4,6 +4,7 @@
 </p>
 <portlet:renderURL var="action_URL">
 <portlet:param name="mvcRenderCommandName" value="/purchase/add_purchase" />
+<portlet:param name="purchaseAdd" value="purchaseAdd" />portlet:renderURL>
 </portlet:renderURL>
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 <liferay-ui:search-container total="${total}"
@@ -21,10 +22,12 @@
                <portlet:renderURL var="editPurchase">
                    <portlet:param name="mvcRenderCommandName" value="/purchase/update_purchase" />
                    <portlet:param name="purchaseId" value="<%= String.valueOf(purchase.getPurchaseId()) %>" />
+                    <portlet:param name="purchaseUpdate" value="purchaseUpdate" />portlet:renderURL>
                </portlet:renderURL>
                <liferay-ui:icon message="action" url="${editPurchase}" />
                <portlet:actionURL var="deletePurchase" name="/purchase/delete_purchase/what">
                    <portlet:param name="purchaseId" value="<%= String.valueOf(purchase.getPurchaseId()) %>" />
+                    <portlet:param name="purchaseDeleteAction" value="purchaseDeleteAction" />
                </portlet:actionURL>
                <liferay-ui:icon message="action" url="${deletePurchase}" />
            </liferay-ui:icon-menu>

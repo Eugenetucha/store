@@ -256,8 +256,8 @@ public interface ElectronicsLocalService
 		throws PortalException;
 
 	public Electronics updateElectronics(
-		boolean archive, String name, Long price, int electronics_count,
-		boolean inStock, String description);
+		boolean archive, String name, Long etype, Long price,
+		int electronics_count, boolean inStock, String description);
 
 	/**
 	 * Updates the electronics in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

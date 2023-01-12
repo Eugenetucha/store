@@ -4,6 +4,7 @@
 </p>
 <portlet:renderURL var="action_URL">
 <portlet:param name="mvcRenderCommandName" value="/electronics/add_electronics" />
+ <portlet:param name="electroAdd" value="electroAdd" />
 </portlet:renderURL>
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 <liferay-ui:search-container total="${total}"
@@ -21,10 +22,12 @@
                <portlet:renderURL var="editElectronics">
                    <portlet:param name="mvcRenderCommandName" value="/electronics/update_electronics" />
                    <portlet:param name="ElectronicsId" value="<%= String.valueOf(electronics.getElectronicsId()) %>" />
+                   <portlet:param name="electroUpdate" value="electroUpdate" />
                </portlet:renderURL>
                <liferay-ui:icon message="edit" url="${editElectronics}" />
                <portlet:actionURL var="deleteElectronics" name="/electronics/delete_electronics/what">
                    <portlet:param name="ElectronicsId" value="<%= String.valueOf(electronics.getElectronicsId()) %>" />
+                   <portlet:param name="electroDeleteAction" value="electroDeleteAction" />
                </portlet:actionURL>
                <liferay-ui:icon message="delete" url="${deleteElectronics}" />
            </liferay-ui:icon-menu>

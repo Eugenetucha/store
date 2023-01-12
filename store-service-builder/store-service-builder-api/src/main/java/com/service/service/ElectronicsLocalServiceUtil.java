@@ -287,11 +287,12 @@ public class ElectronicsLocalServiceUtil {
 	}
 
 	public static Electronics updateElectronics(
-		boolean archive, String name, Long price, int electronics_count,
-		boolean inStock, String description) {
+		boolean archive, String name, Long etype, Long price,
+		int electronics_count, boolean inStock, String description) {
 
 		return getService().updateElectronics(
-			archive, name, price, electronics_count, inStock, description);
+			archive, name, etype, price, electronics_count, inStock,
+			description);
 	}
 
 	/**

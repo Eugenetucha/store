@@ -312,11 +312,12 @@ public class ElectronicsLocalServiceWrapper
 
 	@Override
 	public com.service.model.Electronics updateElectronics(
-		boolean archive, String name, Long price, int electronics_count,
-		boolean inStock, String description) {
+		boolean archive, String name, Long etype, Long price,
+		int electronics_count, boolean inStock, String description) {
 
 		return _electronicsLocalService.updateElectronics(
-			archive, name, price, electronics_count, inStock, description);
+			archive, name, etype, price, electronics_count, inStock,
+			description);
 	}
 
 	/**

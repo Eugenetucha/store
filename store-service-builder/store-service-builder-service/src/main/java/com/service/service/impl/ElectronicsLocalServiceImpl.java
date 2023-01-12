@@ -53,8 +53,9 @@ public class ElectronicsLocalServiceImpl
         return super.addElectronics(electronics);
     }
 
-    public Electronics updateElectronics(boolean archive, String name, Long price, int electronics_count, boolean inStock, String description) {
+    public Electronics updateElectronics(boolean archive, String name, Long etype,Long price, int electronics_count, boolean inStock, String description) {
         Electronics electronics = new ElectronicsImpl();
+        electronics.setElectroTypeId(etype);
         electronics.setArchive(archive);
         electronics.setName(name);
         electronics.setPrice(price);

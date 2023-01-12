@@ -1,7 +1,10 @@
 <%@ include file="/init.jsp"%>
-<portlet:actionURL name="/electronics/add_electronics/what" var="editEntryURL" />
-
-<aui:form name="myForm" action="<%=editEntryURL%>">
+<portlet:actionURL var="actionURL" name="/electronics/add_electronics/what">
+   <portlet:param name="add" value="/electronics/add_electronics/what" />
+   <portlet:param name="addElectronicsAction" value="addElectronicsAction" />
+</portlet:actionURL>
+<aui:form name="myForm" action="<%=actionURL%>">
+    <aui:
     <aui:input name="name" id="name" label="name"/>
     <aui:input name="electroTypeId" id="electroTypeId" label="electroTypeId"/>
     <aui:input name="price" id="price" label="price"/>

@@ -1,6 +1,7 @@
 <%@ include file="/init.jsp"%>
 <portlet:actionURL var="actionURL" name="/employee/add_employee/what">
    <portlet:param name="add" value="/employee/add_employee/what" />
+   <portlet:param name="addEmployeeAction" value="addEmployeeAction" />
 </portlet:actionURL>
 <aui:form name="myForm"  action="<%=actionURL%>">
 		 <aui:input name="lastname" id="lastname" label="lastname"/>
