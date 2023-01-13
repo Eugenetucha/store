@@ -2,17 +2,21 @@
 <p>
 	<b><liferay-ui:message key="store.purchase"/></b>
 </p>
+<%
+        int total_purchase = (int) renderRequest.getAttribute("total_purchase");
+        List<Purchase> list_purchase = ( List<Purchase>) renderRequest.getAttribute("list_purchase");
+%>
 <portlet:renderURL var="action_URL">
 <portlet:param name="mvcRenderCommandName" value="/purchase/add_purchase" />
-<portlet:param name="purchaseAdd" value="purchaseAdd" />portlet:renderURL>
+<portlet:param name="purchaseAdd" value="purchaseAdd" />
 </portlet:renderURL>
 <liferay-portlet:renderURL varImpl="iteratorURL" />
-<liferay-ui:search-container total="${total}"
+<liferay-ui:search-container total="<%=total_purchase%>"
                             delta="10"
                             emptyResultsMessage="no-purchase-found"
                             iteratorURL="<%=iteratorURL%>">
    <liferay-ui:search-container-results
-           results="${list}"/>
+           results="<%=list_purchase%>"/>
    <liferay-ui:search-container-row className="com.service.model.Purchase" modelVar="purchase" keyProperty="purchaseId">
        <liferay-ui:search-container-column-text name="id" property ="purchaseId"/>
        <liferay-ui:search-container-column-text name="purchaseDate" property ="purchaseDate"/>
@@ -22,14 +26,14 @@
                <portlet:renderURL var="editPurchase">
                    <portlet:param name="mvcRenderCommandName" value="/purchase/update_purchase" />
                    <portlet:param name="purchaseId" value="<%= String.valueOf(purchase.getPurchaseId()) %>" />
-                    <portlet:param name="purchaseUpdate" value="purchaseUpdate" />portlet:renderURL>
+                    <portlet:param name="purchaseUpdate" value="purchaseUpdate" />
                </portlet:renderURL>
-               <liferay-ui:icon message="action" url="${editPurchase}" />
+               <liferay-ui:icon message="edit" url="${editPurchase}" />
                <portlet:actionURL var="deletePurchase" name="/purchase/delete_purchase/what">
                    <portlet:param name="purchaseId" value="<%= String.valueOf(purchase.getPurchaseId()) %>" />
-                    <portlet:param name="purchaseDeleteAction" value="purchaseDeleteAction" />
+                   <portlet:param name="purchaseDeleteAction" value="purchaseDeleteAction" />
                </portlet:actionURL>
-               <liferay-ui:icon message="action" url="${deletePurchase}" />
+               <liferay-ui:icon message="delete" url="${deletePurchase}" />
            </liferay-ui:icon-menu>
            </liferay-ui:search-container-column-text>
    </liferay-ui:search-container-row>

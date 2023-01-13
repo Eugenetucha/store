@@ -20,6 +20,7 @@
         <%@ include file="/employee/employee.jsp" %>
     </liferay-ui:section>
 </liferay-ui:tabs>
+<portlet:actionURL name='uploadFileURL' var="uploadFileURL" windowState="normal" />
 <aui:form action="<%= uploadFileURL %>" method="POST" name="fm" enctype="multipart/form-data">
   <aui:fieldset>
 

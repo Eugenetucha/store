@@ -29,6 +29,7 @@ public class ResourceAction implements MVCActionCommand {
         UploadPortletRequest uploadRequest
                 = PortalUtil.getUploadPortletRequest(actionRequest);
         File file = uploadRequest.getFile("Select a file with your data:");
+        System.out.println("yes");
         zipReader.setRead(file);
         zipReader.setOut(Paths.get("C:\\Users\\eugene\\IdeaProjects\\store\\store-portlet\\src\\main\\resources\\out\\"));
         zipReader.readZIP();

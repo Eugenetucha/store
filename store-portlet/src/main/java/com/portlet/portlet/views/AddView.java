@@ -35,7 +35,7 @@ public class AddView implements MVCRenderCommand {
                 return "/employee/add_employee.jsp";
             }
         }
-        return "/electronics/add_electronics.jsp";
+        return "";
     }
 
     public String check(RenderRequest renderRequest, RenderResponse renderResponse) {
@@ -43,9 +43,15 @@ public class AddView implements MVCRenderCommand {
         String electroAdd = ParamUtil.getString(renderRequest, "electroAdd");
         String purchaseAdd = ParamUtil.getString(renderRequest, "purchaseAdd");
         String employeeAdd = ParamUtil.getString(renderRequest, "employeeAdd");
-        listFlags.add(electroAdd);
-        listFlags.add(purchaseAdd);
-        listFlags.add(employeeAdd);
-        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).toString();
+        if (!electroAdd.trim().isEmpty()) {
+            listFlags.add(electroAdd);
+        }
+        if (!purchaseAdd.trim().isEmpty()) {
+            listFlags.add(purchaseAdd);
+        }
+        if (!employeeAdd.trim().isEmpty()) {
+            listFlags.add(employeeAdd);
+        }
+        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 }

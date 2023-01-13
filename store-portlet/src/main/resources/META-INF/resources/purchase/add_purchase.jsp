@@ -1,9 +1,10 @@
 <%@ include file="/init.jsp"%>
-<portlet:actionURL var="actionURL" name="/purchase/add_purchase/what">
-   <portlet:param name="add" value="/purchase/add_purchase/what" />
-   <portlet:param name="addPurchaseAction" value="addPurchaseAction" />
-</portlet:actionURL>
-<aui:form name="myForm"  action="<%=actionURL%>" method="POST">
+<%
+    PortletURL actionURL = renderResponse.createActionURL();
+    actionURL.setParameter("javax.portlet.action", "addPurchase");
+    actionURL.setParameter("addPurchaseAction", "addPurchaseAction");
+%>
+<aui:form name="myForm"  method="POST" action="<%=actionURL%>" method="POST">
 		<aui:input name="ElectronicsId" id="ElectronicsId" label="ElectronicsId"/>
 		<aui:input name="employeeId" id="employeeId" label="employeeId"/>
 		<aui:input name="purchaseDate" id="purchaseDate" label="purchaseDate"/>

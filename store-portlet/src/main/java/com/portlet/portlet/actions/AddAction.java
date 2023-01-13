@@ -17,7 +17,6 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,30 +29,38 @@ import java.util.List;
         immediate = true,
         property = {
                 "javax.portlet.name=" + StorePortletKeys.STORE,
-                "mvc.command.name=/electronics/add_electronics/what",
-                "mvc.command.name=/employee/add_employee/what",
-                "mvc.command.name=/purchase/add_purchase/what"
+                "mvc.command.name=addElectronics",
+                "mvc.command.name=addEmployee",
+                "mvc.command.name=addPurchase"
 
         },
         service = MVCActionCommand.class
 )
 public class AddAction extends BaseMVCActionCommand {
     @Override
-    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
+        hideDefaultErrorMessage(actionRequest);
         switch (check(actionRequest, actionResponse)) {
-            case "electroAddAction": {
+            case "addElectronicsAction": {
                 if (checkElectronics(actionRequest, actionResponse)) {
-                    electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
-                            ParamUtil.getString(actionRequest, "name"),
-                            Long.valueOf(ParamUtil.getString(actionRequest, "etype")),
-                            Long.parseLong(ParamUtil.getString(actionRequest, "price")),
-                            Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
-                            Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
-                            ParamUtil.getString(actionRequest, "description"));
+                    try {
+                        electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
+                                ParamUtil.getString(actionRequest, "name"),
+                                Long.valueOf(ParamUtil.getString(actionRequest, "etype")),
+                                Long.parseLong(ParamUtil.getString(actionRequest, "price")),
+                                Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
+                                Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
+                                ParamUtil.getString(actionRequest, "description"));
+                    } catch (RuntimeException e) {
+                        actionResponse.getRenderParameters().setValue("mvcPath", "/electronics/add_electronics.jsp");
+                    }
+                } else {
+
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/electronics/add_electronics.jsp");
                 }
                 break;
             }
-            case "purchaseAddAction": {
+            case "addPurchaseAction": {
                 if (checkPurchase(actionRequest, actionResponse)) {
                     DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
                     try {
@@ -66,12 +73,14 @@ public class AddAction extends BaseMVCActionCommand {
                                         "ElectronicsId")), Long.parseLong(ParamUtil.getString(actionRequest, "employeeId")),
                                 date, Long.parseLong(ParamUtil.getString(actionRequest, "PurchaseTypeId")));
                     } catch (ParseException | PortalException e) {
-                        throw new RuntimeException(e);
+                        actionResponse.getRenderParameters().setValue("mvcPath", "/purchase/add_purchase.jsp");
                     }
                     break;
+                } else {
+                    actionResponse.getRenderParameters().setValue("mvcPath","/purchase/add_purchase.jsp");
                 }
             }
-            case "employeeAddAction": {
+            case "addEmployeeAction": {
                 if (checkEmployee(actionRequest, actionResponse)) {
                     DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
                     try {
@@ -84,9 +93,11 @@ public class AddAction extends BaseMVCActionCommand {
                             employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                         }
                     } catch (ParseException e) {
-                        throw new RuntimeException(e);
+                        actionResponse.getRenderParameters().setValue("mvcPath", "/employee/add_employee.jsp");
                     }
                     break;
+                } else {
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/employee/add_employee.jsp");
                 }
             }
         }
@@ -94,13 +105,13 @@ public class AddAction extends BaseMVCActionCommand {
 
     public String check(ActionRequest request, ActionResponse response) {
         List<String> listFlags = new ArrayList<>();
-        String electroAdd = ParamUtil.getString(request, "electroAddAction");
-        String purchaseAdd = ParamUtil.getString(request, "purchaseAddAction");
-        String employeeAdd = ParamUtil.getString(request, "employeeAddAction");
+        String electroAdd = ParamUtil.getString(request, "addElectronicsAction");
+        String purchaseAdd = ParamUtil.getString(request, "addPurchaseAction");
+        String employeeAdd = ParamUtil.getString(request, "addEmployeeAction");
         listFlags.add(electroAdd);
         listFlags.add(purchaseAdd);
         listFlags.add(employeeAdd);
-        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).toString();
+        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
     public boolean checkElectronics(ActionRequest actionRequest, ActionResponse actionResponse) {

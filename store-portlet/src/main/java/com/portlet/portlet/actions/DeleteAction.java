@@ -4,6 +4,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.portlet.constants.StorePortletKeys;
+import com.service.model.Electronics;
 import com.service.service.ElectronicsLocalService;
 import com.service.service.EmployeeLocalService;
 import com.service.service.PurchaseLocalService;
@@ -29,9 +30,9 @@ import java.util.List;
 public class DeleteAction implements MVCActionCommand {
     @Override
     public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
-        switch (check(actionRequest,actionResponse)){
-            case "electroDeleteAction":{
-                long id = Long.parseLong(ParamUtil.getString(actionRequest, "ElectronicsId"));
+        switch (check(actionRequest, actionResponse)) {
+            case "electroDeleteAction": {
+                long id = Long.parseLong(ParamUtil.getString(actionRequest, "electronicsId"));
                 try {
                     electronicsLocalService.deleteElectronics(id);
                 } catch (PortalException e) {
@@ -39,8 +40,8 @@ public class DeleteAction implements MVCActionCommand {
                 }
                 break;
             }
-            case "employeeDeleteAction":{
-                long id = Long.parseLong(ParamUtil.getString(actionRequest, "EmployeeId"));
+            case "employeeDeleteAction": {
+                long id = Long.parseLong(ParamUtil.getString(actionRequest, "employeeId"));
                 try {
                     employeeLocalService.deleteEmployee(id);
                 } catch (PortalException e) {
@@ -48,7 +49,7 @@ public class DeleteAction implements MVCActionCommand {
                 }
                 break;
             }
-            case "purchaseDeleteAction":{
+            case "purchaseDeleteAction": {
                 long id = Long.parseLong(ParamUtil.getString(actionRequest, "purchaseId"));
                 try {
                     purchaseLocalService.deletePurchase(id);
@@ -69,7 +70,7 @@ public class DeleteAction implements MVCActionCommand {
         listFlags.add(electroDeleteAction);
         listFlags.add(employeeDeleteAction);
         listFlags.add(purchaseDeleteAction);
-        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).toString();
+        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
     @Reference(unbind = "-")

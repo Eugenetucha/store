@@ -3,11 +3,12 @@ package com.portlet.portlet.actions;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.portlet.constants.StorePortletKeys;
 import com.service.model.Electronics;
+import com.service.model.Employee;
+import com.service.model.Purchase;
 import com.service.service.ElectronicsLocalService;
 import com.service.service.EmployeeLocalService;
 import com.service.service.PurchaseLocalService;
@@ -17,12 +18,11 @@ import org.osgi.service.component.annotations.Reference;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component(
         immediate = true,
@@ -37,51 +37,108 @@ import java.util.List;
 )
 public class UpdateAction extends BaseMVCActionCommand {
     @Override
-    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException, IOException, PortalException {
+        long ElectronicsId = Long.parseLong(ParamUtil.getString(actionRequest, "electronicsId"));
+        long PurchaseId = Long.parseLong(ParamUtil.getString(actionRequest, "purchaseId"));
+        long EmployeeId = Long.parseLong(ParamUtil.getString(actionRequest, "employeeId"));
+        System.out.println(EmployeeId);
+        Electronics our_electronics = electronicsLocalService.getElectronics(ElectronicsId);
+        Purchase our_purchase = purchaseLocalService.getPurchase(PurchaseId);
+        Employee our_employee = employeeLocalService.getEmployee(EmployeeId);
         switch (check(actionRequest, actionResponse)) {
-            case "electroAddAction": {
-                if (checkElectronics(actionRequest, actionResponse)) {
-                    electronicsLocalService.updateElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
-                            ParamUtil.getString(actionRequest, "name"),
-                            Long.valueOf(ParamUtil.getString(actionRequest, "etype")),
-                            Long.parseLong(ParamUtil.getString(actionRequest, "price")),
-                            Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
-                            Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
-                            ParamUtil.getString(actionRequest, "description"));
+            case "updateElectronicsAction": {
+                try {
+                    boolean archive = Objects.equals(ParamUtil.getString(actionRequest, "archive"), "false") ?
+                            our_electronics.getArchive() : Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive"));
+                    String name = ParamUtil.getString(actionRequest, "name") == null ?
+                            our_electronics.getName() : ParamUtil.getString(actionRequest, "name");
+                    Long etype = ParamUtil.getString(actionRequest, "etype") == null ?
+                            our_electronics.getElectroTypeId() : Long.parseLong(ParamUtil.getString(actionRequest, "etype"));
+                    Long price = ParamUtil.getString(actionRequest, "price") == null ?
+                            our_electronics.getPrice() : Long.parseLong(ParamUtil.getString(actionRequest, "price"));
+                    int electronics_count = ParamUtil.getString(actionRequest, "electronics_count") == null ?
+                            our_electronics.getElectronics_count() : Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count"));
+                    boolean inStock = ParamUtil.getString(actionRequest, "inStock") == null ?
+                            our_electronics.getInStock() : Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock"));
+                    String description = ParamUtil.getString(actionRequest, "description") == null ?
+                            our_electronics.getDescription() : ParamUtil.getString(actionRequest, "description");
+                    electronicsLocalService.updateElectronics(
+                            archive,
+                            name,
+                            etype,
+                            price,
+                            electronics_count,
+                            inStock,
+                            description);
+                } catch (RuntimeException e) {
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/electronics/edit_electronics.jsp");
+                    break;
                 }
+                SessionMessages.add(actionRequest, "success");
                 break;
             }
-            case "purchaseAddAction": {
-                if (checkPurchase(actionRequest, actionResponse)) {
-                    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-                    try {
-                        Electronics electronics = electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest,
-                                "ElectronicsId")));
-                        electronics.setElectronics_count(electronics.getElectronics_count() - 1);
-                        electronicsLocalService.updateElectronics(electronics);
-                        Date date = formatter.parse(ParamUtil.getString(actionRequest, "purchaseDate"));
-                        purchaseLocalService.updatePurchase(Long.parseLong(ParamUtil.getString(actionRequest,
-                                        "ElectronicsId")), Long.parseLong(ParamUtil.getString(actionRequest, "employeeId")),
-                                date, Long.parseLong(ParamUtil.getString(actionRequest, "PurchaseTypeId")));
-                    } catch (ParseException | PortalException e) {
-                        throw new RuntimeException(e);
-                    }
+            case "updatePurchaseAction": {
+                DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+                try {
+                    Long eId = ParamUtil.getString(actionRequest,
+                            "ElectronicsId") == null ? our_purchase.getElectronicsId() :
+                            Long.parseLong(ParamUtil.getString(actionRequest,
+                                    "ElectronicsId"));
+                    Long emId = ParamUtil.getString(actionRequest, "employeeId") == null ?
+                            our_purchase.getEmployeeId() : Long.parseLong(ParamUtil.getString(actionRequest, "employeeId"));
+                    Electronics electronics = electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest,
+                            "ElectronicsId")));
+                    electronics.setElectronics_count(electronics.getElectronics_count() - 1);
+                    electronicsLocalService.updateElectronics(electronics);
+                    Date date = ParamUtil.getString(actionRequest, "purchaseDate") == null ?
+                            our_purchase.getPurchaseDate() : formatter.parse(ParamUtil.getString(actionRequest, "purchaseDate"));
+                    Long pId = ParamUtil.getString(actionRequest, "PurchaseTypeId") == null ?
+                            our_purchase.getPurchaseTypeId() : Long.parseLong(ParamUtil.getString(actionRequest, "PurchaseTypeId"));
+                    purchaseLocalService.updatePurchase(eId, emId,
+                            date, pId);
+                } catch (RuntimeException e) {
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/purchase/purchase_employee.jsp");
                     break;
+                } catch (PortalException | ParseException e) {
+                    throw new RuntimeException(e);
                 }
+                SessionMessages.add(actionRequest, "success");
+                break;
             }
-            case "employeeAddAction": {
-                if (checkEmployee(actionRequest, actionResponse)) {
-                    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-                    try {
-                        Date date = formatter.parse(ParamUtil.getString(actionRequest, "birthdate"));
-                        employeeLocalService.updateEmployeeddEmployee(ParamUtil.getString(actionRequest, "lastname"),
-                                ParamUtil.getString(actionRequest, "firstname"), ParamUtil.getString(actionRequest, "patronymic"), date,
-                                Long.parseLong(ParamUtil.getString(actionRequest, "PositionTypeId")), Boolean.parseBoolean(ParamUtil.getString(actionRequest, "gender")));
-                    } catch (ParseException e) {
-                        throw new RuntimeException(e);
+            case "updateEmployeeAction": {
+
+                DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    Date date = ParamUtil.getString(actionRequest, "birthdate") == null ?
+                            our_employee.getBirthdate() : formatter.parse(ParamUtil.getString(actionRequest, "birthdate"));
+                    String lastname = ParamUtil.getString(actionRequest, "lastname") == null ?
+                            our_employee.getLastname() : ParamUtil.getString(actionRequest, "lastname");
+                    String firstname = ParamUtil.getString(actionRequest, "firstname") == null ?
+                            our_employee.getFirstname() : ParamUtil.getString(actionRequest, "firstname");
+                    String patronymic = ParamUtil.getString(actionRequest, "patronymic") == null ?
+                            our_employee.getPatronymic() : ParamUtil.getString(actionRequest, "patronymic");
+                    Long PositionTypeId = ParamUtil.getString(actionRequest, "PositionTypeId") == null ?
+                            our_employee.getPositionTypeId() : Long.parseLong(ParamUtil.getString(actionRequest, "PositionTypeId"));
+                    boolean gender = ParamUtil.getString(actionRequest, "gender") == null ?
+                            our_employee.getGender() : Boolean.parseBoolean(ParamUtil.getString(actionRequest, "gender"));
+                    Employee employee = employeeLocalService.updateEmployeeddEmployee(lastname,
+                            firstname, patronymic, date,
+                            PositionTypeId, gender);
+
+                    if(ParamUtil.getString(actionRequest, "etypes") != null){
+                        List<String> types = Arrays.asList(ParamUtil.getString(actionRequest, "etypes").split(","));
+                        for (String type : types) {
+                            employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
+                        }
                     }
+                } catch (RuntimeException e) {
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/employee/edit_employee.jsp");
                     break;
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
+                SessionMessages.add(actionRequest, "success");
+                break;
             }
         }
     }
@@ -94,117 +151,7 @@ public class UpdateAction extends BaseMVCActionCommand {
         listFlags.add(electroAdd);
         listFlags.add(purchaseAdd);
         listFlags.add(employeeAdd);
-        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).toString();
-    }
-
-    public boolean checkElectronics(ActionRequest actionRequest, ActionResponse actionResponse) {
-        if (ParamUtil.getString(actionRequest, "name").isEmpty() ||
-                ParamUtil.getString(actionRequest, "name").length() > 150) {
-            SessionErrors.add(actionRequest, "name-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "etype").isEmpty()) {
-            SessionErrors.add(actionRequest, "type-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "price").isEmpty()) {
-            SessionErrors.add(actionRequest, "price-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "electronics_count").isEmpty()) {
-            SessionErrors.add(actionRequest, "count-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "inStock").isEmpty()) {
-            SessionErrors.add(actionRequest, "stock-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "archive").isEmpty()) {
-            SessionErrors.add(actionRequest, "archive-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "description").isEmpty() ||
-                ParamUtil.getString(actionRequest, "description").length() > 5000) {
-            SessionErrors.add(actionRequest, "description-error");
-            return false;
-        }
-
-        SessionMessages.add(actionRequest, "success");
-        return true;
-    }
-
-    public boolean checkPurchase(ActionRequest actionRequest, ActionResponse actionResponse) {
-        if (ParamUtil.getString(actionRequest, "ElectronicsId").isEmpty()
-        ) {
-            SessionErrors.add(actionRequest, "ElectronicsId-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "employeeId").isEmpty()) {
-            SessionErrors.add(actionRequest, "employeeId-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "purchaseDate").isEmpty()) {
-            SessionErrors.add(actionRequest, "purchaseDate-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "PurchaseTypeId").isEmpty()) {
-            SessionErrors.add(actionRequest, "PurchaseTypeId-error");
-            return false;
-        }
-        try {
-            if (electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest, "ElectronicsId"))).getElectronics_count() == 0) {
-                SessionErrors.add(actionRequest, "ElectronicsLimit-error");
-                return false;
-            }
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-            Date date = formatter.parse(ParamUtil.getString(actionRequest, "purchaseDate"));
-            Date current = new Date(System.currentTimeMillis());
-            if (date.after(current)) {
-                SessionErrors.add(actionRequest, "purchaseDate-error");
-                return false;
-            }
-        } catch (PortalException | ParseException e) {
-            throw new RuntimeException(e);
-        }
-        SessionMessages.add(actionRequest, "success");
-        return true;
-    }
-
-    public boolean checkEmployee(ActionRequest actionRequest, ActionResponse actionResponse) {
-        if (ParamUtil.getString(actionRequest, "birthdate").isEmpty()
-        ) {
-            SessionErrors.add(actionRequest, "birthdate-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "lastname").isEmpty() ||
-                ParamUtil.getString(actionRequest, "lastname").length() > 100) {
-            SessionErrors.add(actionRequest, "lastname-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "firstname").isEmpty() ||
-                ParamUtil.getString(actionRequest, "firstname").length() > 100) {
-            SessionErrors.add(actionRequest, "firstname-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "patronymic").isEmpty() ||
-                ParamUtil.getString(actionRequest, "patronymic").length() > 100) {
-            SessionErrors.add(actionRequest, "patronymic-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "PositionTypeId").isEmpty()) {
-            SessionErrors.add(actionRequest, "PositionTypeId-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "gender").isEmpty()) {
-            SessionErrors.add(actionRequest, "gender-error");
-            return false;
-        }
-        if (ParamUtil.getString(actionRequest, "etypes").isEmpty()) {
-            SessionErrors.add(actionRequest, "etypes-error");
-            return false;
-        }
-        SessionMessages.add(actionRequest, "success");
-        return true;
+        return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
     @Reference(unbind = "-")
