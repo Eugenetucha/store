@@ -44,14 +44,14 @@ public interface PurchaseTypeModel extends BaseModel<PurchaseType> {
 	 *
 	 * @return the primary key of this purchase type
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this purchase type.
 	 *
 	 * @param primaryKey the primary key of this purchase type
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this purchase type.
@@ -59,28 +59,28 @@ public interface PurchaseTypeModel extends BaseModel<PurchaseType> {
 	 * @return the uuid of this purchase type
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this purchase type.
 	 *
 	 * @param uuid the uuid of this purchase type
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the purchase type ID of this purchase type.
 	 *
 	 * @return the purchase type ID of this purchase type
 	 */
-	public long getPurchaseTypeId();
+    long getPurchaseTypeId();
 
 	/**
 	 * Sets the purchase type ID of this purchase type.
 	 *
 	 * @param purchaseTypeId the purchase type ID of this purchase type
 	 */
-	public void setPurchaseTypeId(long purchaseTypeId);
+    void setPurchaseTypeId(long purchaseTypeId);
 
 	/**
 	 * Returns the name of this purchase type.
@@ -88,13 +88,13 @@ public interface PurchaseTypeModel extends BaseModel<PurchaseType> {
 	 * @return the name of this purchase type
 	 */
 	@AutoEscape
-	public String getName();
+    String getName();
 
 	/**
 	 * Sets the name of this purchase type.
 	 *
 	 * @param name the name of this purchase type
 	 */
-	public void setName(String name);
+    void setName(String name);
 
 }

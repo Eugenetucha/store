@@ -36,7 +36,7 @@ public interface Purchase extends PersistedModel, PurchaseModel {
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.service.model.impl.PurchaseImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Purchase, Long> PURCHASE_ID_ACCESSOR =
+    Accessor<Purchase, Long> PURCHASE_ID_ACCESSOR =
 		new Accessor<Purchase, Long>() {
 
 			@Override

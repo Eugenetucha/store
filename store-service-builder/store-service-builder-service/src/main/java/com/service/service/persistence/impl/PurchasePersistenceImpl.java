@@ -1294,7 +1294,7 @@ public class PurchasePersistenceImpl
 		return finderPath;
 	}
 
-	private Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
+	private final Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
 		new HashSet<>();
 	private ServiceRegistration<ArgumentsResolver>
 		_argumentsResolverServiceRegistration;
@@ -1333,7 +1333,7 @@ public class PurchasePersistenceImpl
 
 				for (String columnName : columnNames) {
 					finderPathColumnBitmask |=
-						purchaseModelImpl.getColumnBitmask(columnName);
+						PurchaseModelImpl.getColumnBitmask(columnName);
 				}
 
 				if (finderPath.isBaseModelResult() &&

@@ -29,7 +29,7 @@ import java.util.zip.ZipInputStream;
 public class ZipReader {
     File read;
     Path out;
-    private static Log log = LogFactoryUtil.getLog(ZipReader.class);
+    private static final Log log = LogFactoryUtil.getLog(ZipReader.class);
     int count;
 
     public int getCount() {
@@ -128,6 +128,7 @@ public class ZipReader {
             log.error(e);
             throw new RuntimeException(e);
         }
+        assert ex != null;
         readCSV(ex);
     }
 

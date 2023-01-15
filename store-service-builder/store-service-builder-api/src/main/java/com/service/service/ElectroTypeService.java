@@ -53,6 +53,6 @@ public interface ElectroTypeService extends BaseService {
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 }

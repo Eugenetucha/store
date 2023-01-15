@@ -36,7 +36,7 @@ public interface Electronics extends ElectronicsModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.service.model.impl.ElectronicsImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Electronics, Long> ELECTRONICS_ID_ACCESSOR =
+    Accessor<Electronics, Long> ELECTRONICS_ID_ACCESSOR =
 		new Accessor<Electronics, Long>() {
 
 			@Override

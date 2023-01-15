@@ -61,7 +61,7 @@ public interface PurchaseTypeLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.service.service.impl.PurchaseTypeLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the purchase type local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PurchaseTypeLocalServiceUtil} if injection and service tracking are not available.
 	 */
-	public PurchaseType addPurchaseType(Long id, String name);
+    PurchaseType addPurchaseType(Long id, String name);
 
 	/**
 	 * Adds the purchase type to the database. Also notifies the appropriate model listeners.
@@ -74,12 +74,12 @@ public interface PurchaseTypeLocalService
 	 * @return the purchase type that was added
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public PurchaseType addPurchaseType(PurchaseType purchaseType);
+    PurchaseType addPurchaseType(PurchaseType purchaseType);
 
 	/**
 	 * @throws PortalException
 	 */
-	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+    PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -89,13 +89,13 @@ public interface PurchaseTypeLocalService
 	 * @return the new purchase type
 	 */
 	@Transactional(enabled = false)
-	public PurchaseType createPurchaseType(long purchaseTypeId);
+    PurchaseType createPurchaseType(long purchaseTypeId);
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+    PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -110,7 +110,7 @@ public interface PurchaseTypeLocalService
 	 * @throws PortalException if a purchase type with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public PurchaseType deletePurchaseType(long purchaseTypeId)
+    PurchaseType deletePurchaseType(long purchaseTypeId)
 		throws PortalException;
 
 	/**
@@ -124,10 +124,10 @@ public interface PurchaseTypeLocalService
 	 * @return the purchase type that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public PurchaseType deletePurchaseType(PurchaseType purchaseType);
+    PurchaseType deletePurchaseType(PurchaseType purchaseType);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery dynamicQuery();
+    DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
@@ -136,7 +136,7 @@ public interface PurchaseTypeLocalService
 	 * @return the matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
+    <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
@@ -151,7 +151,7 @@ public interface PurchaseTypeLocalService
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
@@ -168,7 +168,7 @@ public interface PurchaseTypeLocalService
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<T> orderByComparator);
 
@@ -179,7 +179,7 @@ public interface PurchaseTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+    long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -189,31 +189,31 @@ public interface PurchaseTypeLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
+    long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PurchaseType fetchPurchaseType(long purchaseTypeId);
+    PurchaseType fetchPurchaseType(long purchaseTypeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+    ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+    IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+    PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -224,7 +224,7 @@ public interface PurchaseTypeLocalService
 	 * @throws PortalException if a purchase type with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PurchaseType getPurchaseType(long purchaseTypeId)
+    PurchaseType getPurchaseType(long purchaseTypeId)
 		throws PortalException;
 
 	/**
@@ -239,7 +239,7 @@ public interface PurchaseTypeLocalService
 	 * @return the range of purchase types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<PurchaseType> getPurchaseTypes(int start, int end);
+    List<PurchaseType> getPurchaseTypes(int start, int end);
 
 	/**
 	 * Returns the number of purchase types.
@@ -247,7 +247,7 @@ public interface PurchaseTypeLocalService
 	 * @return the number of purchase types
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPurchaseTypesCount();
+    int getPurchaseTypesCount();
 
 	/**
 	 * Updates the purchase type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -260,6 +260,6 @@ public interface PurchaseTypeLocalService
 	 * @return the purchase type that was updated
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public PurchaseType updatePurchaseType(PurchaseType purchaseType);
+    PurchaseType updatePurchaseType(PurchaseType purchaseType);
 
 }

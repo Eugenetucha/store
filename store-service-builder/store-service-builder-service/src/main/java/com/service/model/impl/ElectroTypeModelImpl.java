@@ -496,12 +496,7 @@ public class ElectroTypeModelImpl
 
 		long primaryKey = electroType.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getPrimaryKey() == primaryKey;
 	}
 
 	@Override

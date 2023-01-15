@@ -47,7 +47,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param uuid the uuid
 	 * @return the matching electronicses
 	 */
-	public java.util.List<Electronics> findByUuid(String uuid);
+    java.util.List<Electronics> findByUuid(String uuid);
 
 	/**
 	 * Returns a range of all the electronicses where uuid = &#63;.
@@ -61,7 +61,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param end the upper bound of the range of electronicses (not inclusive)
 	 * @return the range of matching electronicses
 	 */
-	public java.util.List<Electronics> findByUuid(
+    java.util.List<Electronics> findByUuid(
 		String uuid, int start, int end);
 
 	/**
@@ -77,7 +77,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching electronicses
 	 */
-	public java.util.List<Electronics> findByUuid(
+    java.util.List<Electronics> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator);
@@ -96,7 +96,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching electronicses
 	 */
-	public java.util.List<Electronics> findByUuid(
+    java.util.List<Electronics> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator,
@@ -110,7 +110,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @return the first matching electronics
 	 * @throws NoSuchElectronicsException if a matching electronics could not be found
 	 */
-	public Electronics findByUuid_First(
+    Electronics findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 				orderByComparator)
@@ -123,7 +123,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching electronics, or <code>null</code> if a matching electronics could not be found
 	 */
-	public Electronics fetchByUuid_First(
+    Electronics fetchByUuid_First(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator);
@@ -136,7 +136,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @return the last matching electronics
 	 * @throws NoSuchElectronicsException if a matching electronics could not be found
 	 */
-	public Electronics findByUuid_Last(
+    Electronics findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 				orderByComparator)
@@ -149,7 +149,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching electronics, or <code>null</code> if a matching electronics could not be found
 	 */
-	public Electronics fetchByUuid_Last(
+    Electronics fetchByUuid_Last(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator);
@@ -163,7 +163,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @return the previous, current, and next electronics
 	 * @throws NoSuchElectronicsException if a electronics with the primary key could not be found
 	 */
-	public Electronics[] findByUuid_PrevAndNext(
+    Electronics[] findByUuid_PrevAndNext(
 			long electronicsId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 				orderByComparator)
@@ -174,7 +174,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 *
 	 * @param uuid the uuid
 	 */
-	public void removeByUuid(String uuid);
+    void removeByUuid(String uuid);
 
 	/**
 	 * Returns the number of electronicses where uuid = &#63;.
@@ -182,21 +182,21 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param uuid the uuid
 	 * @return the number of matching electronicses
 	 */
-	public int countByUuid(String uuid);
+    int countByUuid(String uuid);
 
 	/**
 	 * Caches the electronics in the entity cache if it is enabled.
 	 *
 	 * @param electronics the electronics
 	 */
-	public void cacheResult(Electronics electronics);
+    void cacheResult(Electronics electronics);
 
 	/**
 	 * Caches the electronicses in the entity cache if it is enabled.
 	 *
 	 * @param electronicses the electronicses
 	 */
-	public void cacheResult(java.util.List<Electronics> electronicses);
+    void cacheResult(java.util.List<Electronics> electronicses);
 
 	/**
 	 * Creates a new electronics with the primary key. Does not add the electronics to the database.
@@ -204,7 +204,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param electronicsId the primary key for the new electronics
 	 * @return the new electronics
 	 */
-	public Electronics create(long electronicsId);
+    Electronics create(long electronicsId);
 
 	/**
 	 * Removes the electronics with the primary key from the database. Also notifies the appropriate model listeners.
@@ -213,10 +213,10 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @return the electronics that was removed
 	 * @throws NoSuchElectronicsException if a electronics with the primary key could not be found
 	 */
-	public Electronics remove(long electronicsId)
+    Electronics remove(long electronicsId)
 		throws NoSuchElectronicsException;
 
-	public Electronics updateImpl(Electronics electronics);
+	Electronics updateImpl(Electronics electronics);
 
 	/**
 	 * Returns the electronics with the primary key or throws a <code>NoSuchElectronicsException</code> if it could not be found.
@@ -225,7 +225,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @return the electronics
 	 * @throws NoSuchElectronicsException if a electronics with the primary key could not be found
 	 */
-	public Electronics findByPrimaryKey(long electronicsId)
+    Electronics findByPrimaryKey(long electronicsId)
 		throws NoSuchElectronicsException;
 
 	/**
@@ -234,14 +234,14 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param electronicsId the primary key of the electronics
 	 * @return the electronics, or <code>null</code> if a electronics with the primary key could not be found
 	 */
-	public Electronics fetchByPrimaryKey(long electronicsId);
+    Electronics fetchByPrimaryKey(long electronicsId);
 
 	/**
 	 * Returns all the electronicses.
 	 *
 	 * @return the electronicses
 	 */
-	public java.util.List<Electronics> findAll();
+    java.util.List<Electronics> findAll();
 
 	/**
 	 * Returns a range of all the electronicses.
@@ -254,7 +254,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param end the upper bound of the range of electronicses (not inclusive)
 	 * @return the range of electronicses
 	 */
-	public java.util.List<Electronics> findAll(int start, int end);
+    java.util.List<Electronics> findAll(int start, int end);
 
 	/**
 	 * Returns an ordered range of all the electronicses.
@@ -268,7 +268,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of electronicses
 	 */
-	public java.util.List<Electronics> findAll(
+    java.util.List<Electronics> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator);
@@ -286,7 +286,7 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of electronicses
 	 */
-	public java.util.List<Electronics> findAll(
+    java.util.List<Electronics> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Electronics>
 			orderByComparator,
@@ -295,13 +295,13 @@ public interface ElectronicsPersistence extends BasePersistence<Electronics> {
 	/**
 	 * Removes all the electronicses from the database.
 	 */
-	public void removeAll();
+    void removeAll();
 
 	/**
 	 * Returns the number of electronicses.
 	 *
 	 * @return the number of electronicses
 	 */
-	public int countAll();
+    int countAll();
 
 }

@@ -28,7 +28,6 @@ import java.util.List;
         service = MVCRenderCommand.class
 )
 public class AddView implements MVCRenderCommand {
-    private static Log log = LogFactoryUtil.getLog(AddAction.class);
     @Override
     public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
         switch (check(renderRequest, renderResponse)) {

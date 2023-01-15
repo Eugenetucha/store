@@ -20,11 +20,13 @@ import org.osgi.service.component.annotations.Reference;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Component(
         immediate = true,
@@ -38,12 +40,13 @@ import java.util.*;
         service = MVCActionCommand.class
 )
 public class UpdateAction extends BaseMVCActionCommand {
-    private static Log log = LogFactoryUtil.getLog(UpdateAction.class);
+    private static final Log log = LogFactoryUtil.getLog(UpdateAction.class);
+
     @Override
-    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException, IOException, PortalException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException, PortalException {
         hideDefaultErrorMessage(actionRequest);
         hideDefaultSuccessMessage(actionRequest);
-        switch (check(actionRequest, actionResponse)) {
+        switch (check(actionRequest)) {
             case "updateElectronicsAction": {
                 try {
                     long ElectronicsId = Long.parseLong(ParamUtil.getString(actionRequest, "electronicsId"));
@@ -74,7 +77,7 @@ public class UpdateAction extends BaseMVCActionCommand {
                     String description = (ParamUtil.getString(actionRequest, "description") == null ||
                             ParamUtil.getString(actionRequest, "description").isEmpty()) ?
                             our_electronics.getDescription() : ParamUtil.getString(actionRequest, "description");
-                    Electronics electronics = electronicsLocalService.updateElectronics(
+                    electronicsLocalService.updateElectronics(
                             archive,
                             name,
                             etype,
@@ -153,7 +156,7 @@ public class UpdateAction extends BaseMVCActionCommand {
 
                     if (ParamUtil.getString(actionRequest, "etypes") != null ||
                             ParamUtil.getString(actionRequest, "etypes").isEmpty()) {
-                        List<String> types = Arrays.asList(ParamUtil.getStringValues(actionRequest, "etypes"));
+                        String[] types = ParamUtil.getStringValues(actionRequest, "etypes");
                         for (String type : types) {
                             employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                         }
@@ -170,7 +173,7 @@ public class UpdateAction extends BaseMVCActionCommand {
         }
     }
 
-    public String check(ActionRequest request, ActionResponse response) {
+    public String check(ActionRequest request) {
         List<String> listFlags = new ArrayList<>();
         String electroUpdate = ParamUtil.getString(request, "updateElectronicsAction");
         String purchaseUpdate = ParamUtil.getString(request, "updatePurchaseAction");

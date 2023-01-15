@@ -445,12 +445,7 @@ public class PositionTypeModelImpl
 
 		long primaryKey = positionType.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getPrimaryKey() == primaryKey;
 	}
 
 	@Override

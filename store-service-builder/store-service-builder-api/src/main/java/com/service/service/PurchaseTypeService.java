@@ -53,6 +53,6 @@ public interface PurchaseTypeService extends BaseService {
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 }

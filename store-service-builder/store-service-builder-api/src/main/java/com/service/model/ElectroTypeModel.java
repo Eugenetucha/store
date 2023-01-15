@@ -45,14 +45,14 @@ public interface ElectroTypeModel extends BaseModel<ElectroType>, ShardedModel {
 	 *
 	 * @return the primary key of this electro type
 	 */
-	public long getPrimaryKey();
+    long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this electro type.
 	 *
 	 * @param primaryKey the primary key of this electro type
 	 */
-	public void setPrimaryKey(long primaryKey);
+    void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this electro type.
@@ -60,28 +60,28 @@ public interface ElectroTypeModel extends BaseModel<ElectroType>, ShardedModel {
 	 * @return the uuid of this electro type
 	 */
 	@AutoEscape
-	public String getUuid();
+    String getUuid();
 
 	/**
 	 * Sets the uuid of this electro type.
 	 *
 	 * @param uuid the uuid of this electro type
 	 */
-	public void setUuid(String uuid);
+    void setUuid(String uuid);
 
 	/**
 	 * Returns the electro type ID of this electro type.
 	 *
 	 * @return the electro type ID of this electro type
 	 */
-	public long getElectroTypeId();
+    long getElectroTypeId();
 
 	/**
 	 * Sets the electro type ID of this electro type.
 	 *
 	 * @param electroTypeId the electro type ID of this electro type
 	 */
-	public void setElectroTypeId(long electroTypeId);
+    void setElectroTypeId(long electroTypeId);
 
 	/**
 	 * Returns the name of this electro type.
@@ -89,14 +89,14 @@ public interface ElectroTypeModel extends BaseModel<ElectroType>, ShardedModel {
 	 * @return the name of this electro type
 	 */
 	@AutoEscape
-	public String getName();
+    String getName();
 
 	/**
 	 * Sets the name of this electro type.
 	 *
 	 * @param name the name of this electro type
 	 */
-	public void setName(String name);
+    void setName(String name);
 
 	/**
 	 * Returns the company ID of this electro type.
@@ -104,7 +104,7 @@ public interface ElectroTypeModel extends BaseModel<ElectroType>, ShardedModel {
 	 * @return the company ID of this electro type
 	 */
 	@Override
-	public long getCompanyId();
+    long getCompanyId();
 
 	/**
 	 * Sets the company ID of this electro type.
@@ -112,6 +112,6 @@ public interface ElectroTypeModel extends BaseModel<ElectroType>, ShardedModel {
 	 * @param companyId the company ID of this electro type
 	 */
 	@Override
-	public void setCompanyId(long companyId);
+    void setCompanyId(long companyId);
 
 }

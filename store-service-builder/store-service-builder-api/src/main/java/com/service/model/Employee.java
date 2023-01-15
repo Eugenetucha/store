@@ -36,7 +36,7 @@ public interface Employee extends EmployeeModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.service.model.impl.EmployeeImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Employee, Long> EMPLOYEE_ID_ACCESSOR =
+    Accessor<Employee, Long> EMPLOYEE_ID_ACCESSOR =
 		new Accessor<Employee, Long>() {
 
 			@Override

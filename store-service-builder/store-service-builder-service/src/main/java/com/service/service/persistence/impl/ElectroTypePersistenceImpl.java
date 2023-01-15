@@ -1809,12 +1809,7 @@ public class ElectroTypePersistenceImpl
 	 */
 	@Override
 	public boolean containsEmployees(long pk) {
-		if (getEmployeesSize(pk) > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return getEmployeesSize(pk) > 0;
 	}
 
 	/**
@@ -2219,7 +2214,7 @@ public class ElectroTypePersistenceImpl
 		return finderPath;
 	}
 
-	private Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
+	private final Set<ServiceRegistration<FinderPath>> _serviceRegistrations =
 		new HashSet<>();
 	private ServiceRegistration<ArgumentsResolver>
 		_argumentsResolverServiceRegistration;
@@ -2259,7 +2254,7 @@ public class ElectroTypePersistenceImpl
 
 				for (String columnName : columnNames) {
 					finderPathColumnBitmask |=
-						electroTypeModelImpl.getColumnBitmask(columnName);
+						ElectroTypeModelImpl.getColumnBitmask(columnName);
 				}
 
 				_finderPathColumnBitmasksCache.put(

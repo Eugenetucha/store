@@ -36,15 +36,15 @@ import java.util.*;
         service = MVCActionCommand.class
 )
 public class AddAction extends BaseMVCActionCommand {
-    private static Log log = LogFactoryUtil.getLog(AddAction.class);
+    private static final Log log = LogFactoryUtil.getLog(AddAction.class);
 
     @Override
-    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) {
         hideDefaultErrorMessage(actionRequest);
         hideDefaultSuccessMessage(actionRequest);
         switch (check(actionRequest, actionResponse)) {
             case "addElectronicsAction": {
-                if (checkElectronics(actionRequest, actionResponse)) {
+                if (checkElectronics(actionRequest)) {
                     try {
                         Electronics electronics = electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
                                 ParamUtil.getString(actionRequest, "name"),
@@ -63,7 +63,7 @@ public class AddAction extends BaseMVCActionCommand {
                 break;
             }
             case "addPurchaseAction": {
-                if (checkPurchase(actionRequest, actionResponse)) {
+                if (checkPurchase(actionRequest)) {
                     DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.ENGLISH);
                     try {
                         Electronics electronics = electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest,
@@ -84,14 +84,14 @@ public class AddAction extends BaseMVCActionCommand {
                 }
             }
             case "addEmployeeAction": {
-                if (checkEmployee(actionRequest, actionResponse)) {
+                if (checkEmployee(actionRequest)) {
                     DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
                     try {
                         Date date = formatter.parse(ParamUtil.getString(actionRequest, "birthdate"));
                         Employee employee = employeeLocalService.addEmployee(ParamUtil.getString(actionRequest, "lastname"),
                                 ParamUtil.getString(actionRequest, "firstname"), ParamUtil.getString(actionRequest, "patronymic"), date,
                                 Long.parseLong(ParamUtil.getString(actionRequest, "PositionTypeId")), Boolean.parseBoolean(ParamUtil.getString(actionRequest, "gender")));
-                        List<String> types = Arrays.asList(ParamUtil.getStringValues(actionRequest, "etypes"));
+                        String[] types = ParamUtil.getStringValues(actionRequest, "etypes");
                         for (String type : types) {
                             employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                         }
@@ -124,7 +124,7 @@ public class AddAction extends BaseMVCActionCommand {
         return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
-    public boolean checkElectronics(ActionRequest actionRequest, ActionResponse actionResponse) {
+    public boolean checkElectronics(ActionRequest actionRequest) {
         if (ParamUtil.getString(actionRequest, "name").isEmpty() ||
                 ParamUtil.getString(actionRequest, "name").length() > 150) {
             SessionErrors.add(actionRequest, "name-error");
@@ -160,7 +160,7 @@ public class AddAction extends BaseMVCActionCommand {
         return true;
     }
 
-    public boolean checkPurchase(ActionRequest actionRequest, ActionResponse actionResponse) {
+    public boolean checkPurchase(ActionRequest actionRequest) {
         if (ParamUtil.getString(actionRequest, "ElectronicsId").isEmpty()
         ) {
             SessionErrors.add(actionRequest, "ElectronicsId-error");
@@ -197,7 +197,7 @@ public class AddAction extends BaseMVCActionCommand {
         return true;
     }
 
-    public boolean checkEmployee(ActionRequest actionRequest, ActionResponse actionResponse) {
+    public boolean checkEmployee(ActionRequest actionRequest) {
         if (ParamUtil.getString(actionRequest, "birthdate").isEmpty()
         ) {
             SessionErrors.add(actionRequest, "birthdate-error");

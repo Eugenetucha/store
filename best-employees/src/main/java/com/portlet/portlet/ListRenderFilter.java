@@ -1,13 +1,15 @@
 package com.portlet.portlet;
 
 import com.liferay.portal.kernel.dao.orm.*;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.portlet.constants.BestEmployeesPortletKeys;
 import com.service.model.Electronics;
 import com.service.model.Employee;
 import com.service.model.PositionType;
 import com.service.model.Purchase;
-import com.service.service.*;
+import com.service.service.ElectronicsLocalService;
+import com.service.service.EmployeeLocalService;
+import com.service.service.PositionTypeLocalService;
+import com.service.service.PurchaseLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -152,12 +154,6 @@ public class ListRenderFilter implements RenderFilter {
         this.electronicsLocalService = electronicsLocalService;
     }
 
-    @Reference(unbind = "-")
-    protected void setElectroTypeLocalService(final ElectroTypeLocalService electroTypeLocalService) {
-        this.electroTypeLocalService = electroTypeLocalService;
-    }
-
-    private ElectroTypeLocalService electroTypeLocalService;
     private PositionTypeLocalService positionTypeLocalService;
     private ElectronicsLocalService electronicsLocalService;
     private PurchaseLocalService purchaseLocalService;

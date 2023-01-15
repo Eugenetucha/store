@@ -48,11 +48,7 @@ public class EmployeeCacheModel
 
 		EmployeeCacheModel employeeCacheModel = (EmployeeCacheModel)object;
 
-		if (employeeId == employeeCacheModel.employeeId) {
-			return true;
-		}
-
-		return false;
+		return employeeId == employeeCacheModel.employeeId;
 	}
 
 	@Override

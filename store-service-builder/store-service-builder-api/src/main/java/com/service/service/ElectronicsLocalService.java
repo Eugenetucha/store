@@ -61,7 +61,7 @@ public interface ElectronicsLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.service.service.impl.ElectronicsLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the electronics local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link ElectronicsLocalServiceUtil} if injection and service tracking are not available.
 	 */
-	public Electronics addElectronics(
+    Electronics addElectronics(
 		boolean archive, String name, Long etype, Long price,
 		int electronics_count, boolean inStock, String description);
 
@@ -76,9 +76,9 @@ public interface ElectronicsLocalService
 	 * @return the electronics that was added
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public Electronics addElectronics(Electronics electronics);
+    Electronics addElectronics(Electronics electronics);
 
-	public Electronics addElectronicsWithId(
+	Electronics addElectronicsWithId(
 		Long id, String name, Long etype, Long price, int electronics_count,
 		boolean inStock, boolean archive, String description);
 
@@ -89,12 +89,12 @@ public interface ElectronicsLocalService
 	 * @return the new electronics
 	 */
 	@Transactional(enabled = false)
-	public Electronics createElectronics(long electronicsId);
+    Electronics createElectronics(long electronicsId);
 
 	/**
 	 * @throws PortalException
 	 */
-	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
+    PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
 	/**
@@ -108,7 +108,7 @@ public interface ElectronicsLocalService
 	 * @return the electronics that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Electronics deleteElectronics(Electronics electronics);
+    Electronics deleteElectronics(Electronics electronics);
 
 	/**
 	 * Deletes the electronics with the primary key from the database. Also notifies the appropriate model listeners.
@@ -122,18 +122,18 @@ public interface ElectronicsLocalService
 	 * @throws PortalException if a electronics with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Electronics deleteElectronics(long electronicsId)
+    Electronics deleteElectronics(long electronicsId)
 		throws PortalException;
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+    PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery dynamicQuery();
+    DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
@@ -142,7 +142,7 @@ public interface ElectronicsLocalService
 	 * @return the matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
+    <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
@@ -157,7 +157,7 @@ public interface ElectronicsLocalService
 	 * @return the range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
@@ -174,7 +174,7 @@ public interface ElectronicsLocalService
 	 * @return the ordered range of matching rows
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(
+    <T> List<T> dynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<T> orderByComparator);
 
@@ -185,7 +185,7 @@ public interface ElectronicsLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+    long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	 * Returns the number of rows matching the dynamic query.
@@ -195,14 +195,14 @@ public interface ElectronicsLocalService
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(
+    long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Electronics fetchElectronics(long electronicsId);
+    Electronics fetchElectronics(long electronicsId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+    ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	 * Returns the electronics with the primary key.
@@ -212,7 +212,7 @@ public interface ElectronicsLocalService
 	 * @throws PortalException if a electronics with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Electronics getElectronics(long electronicsId)
+    Electronics getElectronics(long electronicsId)
 		throws PortalException;
 
 	/**
@@ -227,7 +227,7 @@ public interface ElectronicsLocalService
 	 * @return the range of electronicses
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Electronics> getElectronicses(int start, int end);
+    List<Electronics> getElectronicses(int start, int end);
 
 	/**
 	 * Returns the number of electronicses.
@@ -235,27 +235,27 @@ public interface ElectronicsLocalService
 	 * @return the number of electronicses
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getElectronicsesCount();
+    int getElectronicsesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+    IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 	/**
 	 * @throws PortalException
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+    PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
-	public Electronics updateElectronics(
+	Electronics updateElectronics(
 		boolean archive, String name, Long etype, Long price,
 		int electronics_count, boolean inStock, String description);
 
@@ -270,6 +270,6 @@ public interface ElectronicsLocalService
 	 * @return the electronics that was updated
 	 */
 	@Indexable(type = IndexableType.REINDEX)
-	public Electronics updateElectronics(Electronics electronics);
+    Electronics updateElectronics(Electronics electronics);
 
 }

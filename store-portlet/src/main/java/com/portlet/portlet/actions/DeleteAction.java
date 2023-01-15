@@ -7,7 +7,6 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.portlet.constants.StorePortletKeys;
-import com.service.model.Electronics;
 import com.service.service.ElectronicsLocalService;
 import com.service.service.EmployeeLocalService;
 import com.service.service.PurchaseLocalService;
@@ -31,9 +30,10 @@ import java.util.List;
         service = MVCActionCommand.class
 )
 public class DeleteAction extends BaseMVCActionCommand {
-    private static Log log = LogFactoryUtil.getLog(DeleteAction.class);
+    private static final Log log = LogFactoryUtil.getLog(DeleteAction.class);
+
     @Override
-    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) {
         hideDefaultErrorMessage(actionRequest);
         hideDefaultSuccessMessage(actionRequest);
         switch (check(actionRequest, actionResponse)) {

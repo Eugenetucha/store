@@ -48,11 +48,7 @@ public class PurchaseCacheModel
 
 		PurchaseCacheModel purchaseCacheModel = (PurchaseCacheModel)object;
 
-		if (purchaseId == purchaseCacheModel.purchaseId) {
-			return true;
-		}
-
-		return false;
+		return purchaseId == purchaseCacheModel.purchaseId;
 	}
 
 	@Override

@@ -47,11 +47,7 @@ public class ElectronicsCacheModel
 		ElectronicsCacheModel electronicsCacheModel =
 			(ElectronicsCacheModel)object;
 
-		if (electronicsId == electronicsCacheModel.electronicsId) {
-			return true;
-		}
-
-		return false;
+		return electronicsId == electronicsCacheModel.electronicsId;
 	}
 
 	@Override

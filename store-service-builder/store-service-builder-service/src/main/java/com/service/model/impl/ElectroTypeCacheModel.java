@@ -47,11 +47,7 @@ public class ElectroTypeCacheModel
 		ElectroTypeCacheModel electroTypeCacheModel =
 			(ElectroTypeCacheModel)object;
 
-		if (electroTypeId == electroTypeCacheModel.electroTypeId) {
-			return true;
-		}
-
-		return false;
+		return electroTypeId == electroTypeCacheModel.electroTypeId;
 	}
 
 	@Override

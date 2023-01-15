@@ -47,7 +47,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param uuid the uuid
 	 * @return the matching purchase types
 	 */
-	public java.util.List<PurchaseType> findByUuid(String uuid);
+    java.util.List<PurchaseType> findByUuid(String uuid);
 
 	/**
 	 * Returns a range of all the purchase types where uuid = &#63;.
@@ -61,7 +61,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param end the upper bound of the range of purchase types (not inclusive)
 	 * @return the range of matching purchase types
 	 */
-	public java.util.List<PurchaseType> findByUuid(
+    java.util.List<PurchaseType> findByUuid(
 		String uuid, int start, int end);
 
 	/**
@@ -77,7 +77,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching purchase types
 	 */
-	public java.util.List<PurchaseType> findByUuid(
+    java.util.List<PurchaseType> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator);
@@ -96,7 +96,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching purchase types
 	 */
-	public java.util.List<PurchaseType> findByUuid(
+    java.util.List<PurchaseType> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator,
@@ -110,7 +110,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @return the first matching purchase type
 	 * @throws NoSuchPurchaseTypeException if a matching purchase type could not be found
 	 */
-	public PurchaseType findByUuid_First(
+    PurchaseType findByUuid_First(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 				orderByComparator)
@@ -123,7 +123,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching purchase type, or <code>null</code> if a matching purchase type could not be found
 	 */
-	public PurchaseType fetchByUuid_First(
+    PurchaseType fetchByUuid_First(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator);
@@ -136,7 +136,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @return the last matching purchase type
 	 * @throws NoSuchPurchaseTypeException if a matching purchase type could not be found
 	 */
-	public PurchaseType findByUuid_Last(
+    PurchaseType findByUuid_Last(
 			String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 				orderByComparator)
@@ -149,7 +149,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching purchase type, or <code>null</code> if a matching purchase type could not be found
 	 */
-	public PurchaseType fetchByUuid_Last(
+    PurchaseType fetchByUuid_Last(
 		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator);
@@ -163,7 +163,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @return the previous, current, and next purchase type
 	 * @throws NoSuchPurchaseTypeException if a purchase type with the primary key could not be found
 	 */
-	public PurchaseType[] findByUuid_PrevAndNext(
+    PurchaseType[] findByUuid_PrevAndNext(
 			long purchaseTypeId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 				orderByComparator)
@@ -174,7 +174,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 *
 	 * @param uuid the uuid
 	 */
-	public void removeByUuid(String uuid);
+    void removeByUuid(String uuid);
 
 	/**
 	 * Returns the number of purchase types where uuid = &#63;.
@@ -182,21 +182,21 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param uuid the uuid
 	 * @return the number of matching purchase types
 	 */
-	public int countByUuid(String uuid);
+    int countByUuid(String uuid);
 
 	/**
 	 * Caches the purchase type in the entity cache if it is enabled.
 	 *
 	 * @param purchaseType the purchase type
 	 */
-	public void cacheResult(PurchaseType purchaseType);
+    void cacheResult(PurchaseType purchaseType);
 
 	/**
 	 * Caches the purchase types in the entity cache if it is enabled.
 	 *
 	 * @param purchaseTypes the purchase types
 	 */
-	public void cacheResult(java.util.List<PurchaseType> purchaseTypes);
+    void cacheResult(java.util.List<PurchaseType> purchaseTypes);
 
 	/**
 	 * Creates a new purchase type with the primary key. Does not add the purchase type to the database.
@@ -204,7 +204,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param purchaseTypeId the primary key for the new purchase type
 	 * @return the new purchase type
 	 */
-	public PurchaseType create(long purchaseTypeId);
+    PurchaseType create(long purchaseTypeId);
 
 	/**
 	 * Removes the purchase type with the primary key from the database. Also notifies the appropriate model listeners.
@@ -213,10 +213,10 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @return the purchase type that was removed
 	 * @throws NoSuchPurchaseTypeException if a purchase type with the primary key could not be found
 	 */
-	public PurchaseType remove(long purchaseTypeId)
+    PurchaseType remove(long purchaseTypeId)
 		throws NoSuchPurchaseTypeException;
 
-	public PurchaseType updateImpl(PurchaseType purchaseType);
+	PurchaseType updateImpl(PurchaseType purchaseType);
 
 	/**
 	 * Returns the purchase type with the primary key or throws a <code>NoSuchPurchaseTypeException</code> if it could not be found.
@@ -225,7 +225,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @return the purchase type
 	 * @throws NoSuchPurchaseTypeException if a purchase type with the primary key could not be found
 	 */
-	public PurchaseType findByPrimaryKey(long purchaseTypeId)
+    PurchaseType findByPrimaryKey(long purchaseTypeId)
 		throws NoSuchPurchaseTypeException;
 
 	/**
@@ -234,14 +234,14 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param purchaseTypeId the primary key of the purchase type
 	 * @return the purchase type, or <code>null</code> if a purchase type with the primary key could not be found
 	 */
-	public PurchaseType fetchByPrimaryKey(long purchaseTypeId);
+    PurchaseType fetchByPrimaryKey(long purchaseTypeId);
 
 	/**
 	 * Returns all the purchase types.
 	 *
 	 * @return the purchase types
 	 */
-	public java.util.List<PurchaseType> findAll();
+    java.util.List<PurchaseType> findAll();
 
 	/**
 	 * Returns a range of all the purchase types.
@@ -254,7 +254,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param end the upper bound of the range of purchase types (not inclusive)
 	 * @return the range of purchase types
 	 */
-	public java.util.List<PurchaseType> findAll(int start, int end);
+    java.util.List<PurchaseType> findAll(int start, int end);
 
 	/**
 	 * Returns an ordered range of all the purchase types.
@@ -268,7 +268,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of purchase types
 	 */
-	public java.util.List<PurchaseType> findAll(
+    java.util.List<PurchaseType> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator);
@@ -286,7 +286,7 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of purchase types
 	 */
-	public java.util.List<PurchaseType> findAll(
+    java.util.List<PurchaseType> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PurchaseType>
 			orderByComparator,
@@ -295,13 +295,13 @@ public interface PurchaseTypePersistence extends BasePersistence<PurchaseType> {
 	/**
 	 * Removes all the purchase types from the database.
 	 */
-	public void removeAll();
+    void removeAll();
 
 	/**
 	 * Returns the number of purchase types.
 	 *
 	 * @return the number of purchase types
 	 */
-	public int countAll();
+    int countAll();
 
 }

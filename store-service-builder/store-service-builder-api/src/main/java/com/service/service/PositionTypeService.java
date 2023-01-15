@@ -53,6 +53,6 @@ public interface PositionTypeService extends BaseService {
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public String getOSGiServiceIdentifier();
+    String getOSGiServiceIdentifier();
 
 }
