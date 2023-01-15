@@ -14,6 +14,7 @@
 
 package com.service.service;
 
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.service.model.Employee;
 import com.service.model.Purchase;
 
 import java.io.Serializable;
@@ -135,6 +137,7 @@ public interface PurchaseLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();
 
+
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
 	 *
@@ -200,6 +203,8 @@ public interface PurchaseLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Purchase fetchPurchase(long purchaseId);
+
+	public List<Employee> findByPositionTypeIdCount(Long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

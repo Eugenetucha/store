@@ -15,6 +15,10 @@
 package com.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.service.model.Employee;
 import com.service.model.impl.EmployeeImpl;
@@ -22,6 +26,7 @@ import com.service.service.base.EmployeeLocalServiceBaseImpl;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan

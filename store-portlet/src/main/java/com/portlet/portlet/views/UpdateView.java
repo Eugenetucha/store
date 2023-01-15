@@ -5,14 +5,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.portlet.constants.StorePortletKeys;
-import com.service.model.ElectroType;
-import com.service.model.Electronics;
-import com.service.model.Employee;
-import com.service.model.Purchase;
-import com.service.service.ElectroTypeLocalService;
-import com.service.service.ElectronicsLocalService;
-import com.service.service.EmployeeLocalService;
-import com.service.service.PurchaseLocalService;
+import com.service.model.*;
+import com.service.service.*;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -46,30 +40,38 @@ public class UpdateView implements MVCRenderCommand {
                 } catch (PortalException e) {
                     throw new RuntimeException(e);
                 }
+                List<ElectroType> all_etypes = electroTypeLocalService.getElectroTypes(0, electroTypeLocalService.getElectroTypesCount());
+                renderRequest.setAttribute("all_etypes", all_etypes);
                 renderRequest.setAttribute("electronics", electronics);
                 return "/electronics/edit_electronics.jsp";
             }
             case "purchaseUpdate": {
-                System.out.println("ds");
                 Purchase purchase;
                 try {
-                    System.out.println("ds1");
                     purchase = purchaseLocalService.getPurchase(Long.parseLong(ParamUtil.getString(renderRequest, "purchaseId")));
-                    System.out.println("ds2");
                 } catch (PortalException e) {
                     throw new RuntimeException(e);
                 }
+                List<Electronics> electronics = electronicsLocalService.getElectronicses(0, electronicsLocalService.getElectronicsesCount());
+                renderRequest.setAttribute("electronics", electronics);
+                List<Employee> employees = employeeLocalService.getEmployees(0, employeeLocalService.getEmployeesCount());
+                renderRequest.setAttribute("employees", employees);
+                List<PurchaseType> purchaseTypes = purchaseTypeLocalService.getPurchaseTypes(0, purchaseLocalService.getPurchasesCount());
+                renderRequest.setAttribute("purchaseTypes", purchaseTypes);
                 renderRequest.setAttribute("purchase", purchase);
                 return "/purchase/edit_purchase.jsp";
             }
             case "employeeUpdate": {
                 Employee employee;
                 try {
-                    System.out.println(Long.parseLong(ParamUtil.getString(renderRequest, "employeeId")));
                     employee = employeeLocalService.getEmployee(Long.parseLong(ParamUtil.getString(renderRequest, "employeeId")));
                 } catch (PortalException e) {
                     throw new RuntimeException(e);
                 }
+                List<PositionType> positionTypes = positionTypeLocalService.getPositionTypes(0,positionTypeLocalService.getPositionTypesCount());
+                renderRequest.setAttribute("positionTypes",positionTypes);
+                List<ElectroType> electroTypes = electroTypeLocalService.getElectroTypes(0,electroTypeLocalService.getElectroTypesCount());
+                renderRequest.setAttribute("electroTypes",electroTypes);
                 List<ElectroType> etypes1 = electroTypeLocalService.getEmployeeElectroTypes(employee.getEmployeeId());
                 String etypes = etypes1.stream().map(ElectroType::getName)
                         .collect(Collectors.joining(", "));
@@ -104,13 +106,18 @@ public class UpdateView implements MVCRenderCommand {
     }
 
     @Reference(unbind = "-")
-    protected void setPurchaseLocalService(PurchaseLocalService purchaseLocalService) {
-        this.purchaseLocalService = purchaseLocalService;
+    protected void setElectronicsLocalService(ElectronicsLocalService electronicsLocalService) {
+        this.electronicsLocalService = electronicsLocalService;
     }
 
     @Reference(unbind = "-")
-    protected void setElectronicsLocalService(ElectronicsLocalService electronicsLocalService) {
-        this.electronicsLocalService = electronicsLocalService;
+    protected void setPositionTypeLocalService(PositionTypeLocalService positionTypeLocalService) {
+        this.positionTypeLocalService = positionTypeLocalService;
+    }
+
+    @Reference(unbind = "-")
+    protected void setPurchaseLocalService(PurchaseLocalService purchaseLocalService) {
+        this.purchaseLocalService = purchaseLocalService;
     }
 
     @Reference(unbind = "-")
@@ -118,8 +125,15 @@ public class UpdateView implements MVCRenderCommand {
         this.electroTypeLocalService = electroTypeLocalService;
     }
 
-    ElectroTypeLocalService electroTypeLocalService;
-    PurchaseLocalService purchaseLocalService;
-    EmployeeLocalService employeeLocalService;
+    @Reference(unbind = "-")
+    protected void setPurchaseTypeLocalService(PurchaseTypeLocalService purchaseTypeLocalService) {
+        this.purchaseTypeLocalService = purchaseTypeLocalService;
+    }
+
     ElectronicsLocalService electronicsLocalService;
+    EmployeeLocalService employeeLocalService;
+    PositionTypeLocalService positionTypeLocalService;
+    PurchaseLocalService purchaseLocalService;
+    ElectroTypeLocalService electroTypeLocalService;
+    PurchaseTypeLocalService purchaseTypeLocalService;
 }

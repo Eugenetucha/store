@@ -28,6 +28,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <liferay-ui:error key="ElectronicsId-error" message="ElectronicsId not valid!" />
 <liferay-ui:error key="ElectronicsLimit-error" message="there is no product left :(" />
 <liferay-ui:error key="employeeId-error" message="employeeId is not valid!" />
+<liferay-ui:error key="archive-error" message="archive is not valid!" />
 <liferay-ui:error key="purchaseDate-error" message="purchaseDate is not valid!" />
 <liferay-ui:error key="PurchaseTypeId" message="PurchaseTypeId is not valid!"/>
 <liferay-ui:error key="birthdate-error" message="birthdate is not valid!" />

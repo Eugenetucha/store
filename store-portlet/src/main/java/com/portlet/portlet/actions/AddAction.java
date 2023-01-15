@@ -1,6 +1,8 @@
 package com.portlet.portlet.actions;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -20,10 +22,7 @@ import javax.portlet.ActionResponse;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component(
         immediate = true,
@@ -37,32 +36,35 @@ import java.util.List;
         service = MVCActionCommand.class
 )
 public class AddAction extends BaseMVCActionCommand {
+    private static Log log = LogFactoryUtil.getLog(AddAction.class);
+
     @Override
     public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
         hideDefaultErrorMessage(actionRequest);
+        hideDefaultSuccessMessage(actionRequest);
         switch (check(actionRequest, actionResponse)) {
             case "addElectronicsAction": {
                 if (checkElectronics(actionRequest, actionResponse)) {
                     try {
-                        electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
+                        Electronics electronics = electronicsLocalService.addElectronics(Boolean.parseBoolean(ParamUtil.getString(actionRequest, "archive")),
                                 ParamUtil.getString(actionRequest, "name"),
-                                Long.valueOf(ParamUtil.getString(actionRequest, "etype")),
+                                Long.valueOf(ParamUtil.getString(actionRequest, "electroTypeId")),
                                 Long.parseLong(ParamUtil.getString(actionRequest, "price")),
                                 Integer.parseInt(ParamUtil.getString(actionRequest, "electronics_count")),
                                 Boolean.parseBoolean(ParamUtil.getString(actionRequest, "inStock")),
                                 ParamUtil.getString(actionRequest, "description"));
                     } catch (RuntimeException e) {
+                        log.error(e);
                         actionResponse.getRenderParameters().setValue("mvcPath", "/electronics/add_electronics.jsp");
                     }
                 } else {
-
                     actionResponse.getRenderParameters().setValue("mvcPath", "/electronics/add_electronics.jsp");
                 }
                 break;
             }
             case "addPurchaseAction": {
                 if (checkPurchase(actionRequest, actionResponse)) {
-                    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+                    DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.ENGLISH);
                     try {
                         Electronics electronics = electronicsLocalService.getElectronics(Long.parseLong(ParamUtil.getString(actionRequest,
                                 "ElectronicsId")));
@@ -73,11 +75,12 @@ public class AddAction extends BaseMVCActionCommand {
                                         "ElectronicsId")), Long.parseLong(ParamUtil.getString(actionRequest, "employeeId")),
                                 date, Long.parseLong(ParamUtil.getString(actionRequest, "PurchaseTypeId")));
                     } catch (ParseException | PortalException e) {
+                        log.error(e);
                         actionResponse.getRenderParameters().setValue("mvcPath", "/purchase/add_purchase.jsp");
                     }
                     break;
                 } else {
-                    actionResponse.getRenderParameters().setValue("mvcPath","/purchase/add_purchase.jsp");
+                    actionResponse.getRenderParameters().setValue("mvcPath", "/purchase/add_purchase.jsp");
                 }
             }
             case "addEmployeeAction": {
@@ -88,11 +91,12 @@ public class AddAction extends BaseMVCActionCommand {
                         Employee employee = employeeLocalService.addEmployee(ParamUtil.getString(actionRequest, "lastname"),
                                 ParamUtil.getString(actionRequest, "firstname"), ParamUtil.getString(actionRequest, "patronymic"), date,
                                 Long.parseLong(ParamUtil.getString(actionRequest, "PositionTypeId")), Boolean.parseBoolean(ParamUtil.getString(actionRequest, "gender")));
-                        List<String> types = Arrays.asList(ParamUtil.getString(actionRequest, "etypes").split(","));
+                        List<String> types = Arrays.asList(ParamUtil.getStringValues(actionRequest, "etypes"));
                         for (String type : types) {
                             employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                         }
                     } catch (ParseException e) {
+                        log.error(e);
                         actionResponse.getRenderParameters().setValue("mvcPath", "/employee/add_employee.jsp");
                     }
                     break;
@@ -108,9 +112,15 @@ public class AddAction extends BaseMVCActionCommand {
         String electroAdd = ParamUtil.getString(request, "addElectronicsAction");
         String purchaseAdd = ParamUtil.getString(request, "addPurchaseAction");
         String employeeAdd = ParamUtil.getString(request, "addEmployeeAction");
-        listFlags.add(electroAdd);
-        listFlags.add(purchaseAdd);
-        listFlags.add(employeeAdd);
+        if (!electroAdd.trim().isEmpty()) {
+            listFlags.add(electroAdd);
+        }
+        if (!purchaseAdd.trim().isEmpty()) {
+            listFlags.add(purchaseAdd);
+        }
+        if (!employeeAdd.trim().isEmpty()) {
+            listFlags.add(employeeAdd);
+        }
         return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
@@ -120,7 +130,7 @@ public class AddAction extends BaseMVCActionCommand {
             SessionErrors.add(actionRequest, "name-error");
             return false;
         }
-        if (ParamUtil.getString(actionRequest, "etype").isEmpty()) {
+        if (ParamUtil.getString(actionRequest, "electroTypeId").isEmpty()) {
             SessionErrors.add(actionRequest, "type-error");
             return false;
         }
@@ -173,7 +183,7 @@ public class AddAction extends BaseMVCActionCommand {
                 SessionErrors.add(actionRequest, "ElectronicsLimit-error");
                 return false;
             }
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
             Date date = formatter.parse(ParamUtil.getString(actionRequest, "purchaseDate"));
             Date current = new Date(System.currentTimeMillis());
             if (date.after(current)) {
@@ -216,7 +226,7 @@ public class AddAction extends BaseMVCActionCommand {
             SessionErrors.add(actionRequest, "gender-error");
             return false;
         }
-        if (ParamUtil.getString(actionRequest, "etypes").isEmpty()) {
+        if (ParamUtil.getStringValues(actionRequest, "etypes").length < 1) {
             SessionErrors.add(actionRequest, "etypes-error");
             return false;
         }

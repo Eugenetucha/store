@@ -85,7 +85,6 @@
     <entity local-service="true" name="PurchaseType" remote-service="true" uuid="true">
 
         <!-- PK fields -->
-
         <column name="purchaseTypeId" primary="true" type="long" id-type="increment"/>
 
         <!-- Other fields -->

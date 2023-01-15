@@ -231,6 +231,13 @@ public class PurchaseLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.service.model.Employee> findByPositionTypeIdCount(
+		Long id) {
+
+		return _purchaseLocalService.findByPositionTypeIdCount(id);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

@@ -1,6 +1,9 @@
 package com.portlet.portlet;
 
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.portlet.constants.StorePortletKeys;
@@ -23,17 +26,23 @@ import java.nio.file.Paths;
         },
         service = MVCActionCommand.class
 )
-public class ResourceAction implements MVCActionCommand {
+public class ResourceAction extends BaseMVCActionCommand {
     @Override
-    public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+        hideDefaultErrorMessage(actionRequest);
+        hideDefaultSuccessMessage(actionRequest);
         UploadPortletRequest uploadRequest
                 = PortalUtil.getUploadPortletRequest(actionRequest);
         File file = uploadRequest.getFile("Select a file with your data:");
-        System.out.println("yes");
         zipReader.setRead(file);
-        zipReader.setOut(Paths.get("C:\\Users\\eugene\\IdeaProjects\\store\\store-portlet\\src\\main\\resources\\out\\"));
+        new File("./out").mkdir();
+        zipReader.setOut(Paths.get("./out"));
         zipReader.readZIP();
-        return false;
+        if (zipReader.getCount() == 0) {
+            SessionMessages.add(actionRequest, "success");
+        } else {
+            SessionErrors.add(actionRequest, "archive-error");
+        }
     }
 
     @Reference(unbind = "-")

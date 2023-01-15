@@ -1,12 +1,15 @@
 package com.portlet.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.portlet.constants.StorePortletKeys;
 import com.service.model.*;
 import com.service.service.*;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.portlet.ActionRequest;
 import java.io.*;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -26,11 +29,23 @@ import java.util.zip.ZipInputStream;
 public class ZipReader {
     File read;
     Path out;
+    private static Log log = LogFactoryUtil.getLog(ZipReader.class);
+    int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+
+    ActionRequest actionRequest;
 
     public void setRead(File read) {
         this.read = read;
     }
-
 
     public void setOut(Path out) {
         this.out = out;
@@ -41,8 +56,7 @@ public class ZipReader {
             try {
                 electronicsLocalService.deleteElectronics(electronics.getElectronicsId());
             } catch (PortalException e) {
-                System.out.println("1");
-                System.out.println(e);
+                log.error(e);
                 throw new RuntimeException(e);
             }
         }
@@ -57,8 +71,7 @@ public class ZipReader {
             try {
                 positionTypeLocalService.deletePositionType(positionType.getPositionTypeId());
             } catch (PortalException e) {
-                System.out.println("2");
-                System.out.println(e);
+                log.error(e);
                 throw new RuntimeException(e);
             }
         }
@@ -66,8 +79,7 @@ public class ZipReader {
             try {
                 purchaseLocalService.deletePurchase(purchase.getPurchaseId());
             } catch (PortalException e) {
-                System.out.println("3");
-                System.out.println(e);
+                log.error(e);
                 throw new RuntimeException(e);
             }
         }
@@ -75,25 +87,21 @@ public class ZipReader {
             try {
                 electroTypeLocalService.deleteElectroType(electroType.getElectroTypeId());
             } catch (PortalException e) {
-                System.out.println("4");
-                System.out.println(e);
+                log.error(e);
                 throw new RuntimeException(e);
             }
         }
-        for (PositionType positionType : positionTypeLocalService.getPositionTypes(0, positionTypeLocalService.getPositionTypesCount())) {
+        for (PurchaseType purchaseType : purchaseTypeLocalService.getPurchaseTypes(0, purchaseTypeLocalService.getPurchaseTypesCount())) {
             try {
-                positionTypeLocalService.deletePositionType(positionType.getPositionTypeId());
+                purchaseTypeLocalService.deletePurchaseType(purchaseType.getPurchaseTypeId());
             } catch (PortalException e) {
-                System.out.println("5");
-                System.out.println(e);
+                log.error(e);
                 throw new RuntimeException(e);
             }
         }
         byte[] buffer = new byte[2048];
         File ex = null;
-        try (FileInputStream fis = new FileInputStream(read);
-             BufferedInputStream bis = new BufferedInputStream(fis);
-             ZipInputStream stream = new ZipInputStream(bis)) {
+        try (FileInputStream fis = new FileInputStream(read); BufferedInputStream bis = new BufferedInputStream(fis); ZipInputStream stream = new ZipInputStream(bis)) {
             ZipEntry entry;
             while ((entry = stream.getNextEntry()) != null) {
                 File newFile = newFile(out.toFile(), entry);
@@ -117,7 +125,7 @@ public class ZipReader {
                 }
             }
         } catch (IOException e) {
-            System.out.println("6");
+            log.error(e);
             throw new RuntimeException(e);
         }
         readCSV(ex);
@@ -126,6 +134,7 @@ public class ZipReader {
     public void readCSV(File out_file) {
         File[] listOfFiles = out_file.listFiles();
         assert listOfFiles != null;
+        setCount(listOfFiles.length);
         for (File file : listOfFiles) {
             read(file.getPath());
         }
@@ -143,7 +152,7 @@ public class ZipReader {
                 throw new IOException("Entry is outside of the target dir: " + zipEntry.getName());
             }
         } catch (IOException e) {
-            System.out.println("8");
+            log.error(e);
             throw new RuntimeException(e);
         }
         return destFile;
@@ -167,19 +176,17 @@ public class ZipReader {
                             } else {
                                 gender = Boolean.parseBoolean(records.get(i).get(6));
                             }
-                            Employee employee = employeeLocalService.addEmployee(Long.parseLong(records.get(i).get(0)), records.get(i).get(1),
-                                    records.get(i).get(2), records.get(i).get(3), date,
-                                    Long.parseLong(records.get(i).get(5)), gender);
+                            Employee employee = employeeLocalService.addEmployee(Long.parseLong(records.get(i).get(0)), records.get(i).get(1), records.get(i).get(2), records.get(i).get(3), date, Long.parseLong(records.get(i).get(5)), gender);
                             String[] types = records.get(i).get(7).split(",");
                             for (String type : types) {
                                 employeeLocalService.addElectroTypeEmployee(Integer.parseInt(type), employee);
                             }
+                            setCount(getCount() - 1);
                         } catch (ParseException e) {
-                            System.out.println(e);
+                            log.error(e);
                             throw new RuntimeException(e);
                         }
                     }
-                    System.out.println("1");
                     break;
                 }
                 case 2: {
@@ -187,10 +194,10 @@ public class ZipReader {
                         for (int i = 1; i < records.size(); i++) {
                             electroTypeLocalService.addElectroType(Long.parseLong(records.get(i).get(0)), records.get(i).get(1));
                         }
+                        setCount(getCount() - 1);
                     } catch (RuntimeException e) {
-                        System.out.println(e);
+                        log.error(e);
                     }
-                    System.out.println("2");
                     break;
                 }
                 case 3: {
@@ -198,10 +205,10 @@ public class ZipReader {
                         for (int i = 1; i < records.size(); i++) {
                             positionTypeLocalService.addPositionType(Long.parseLong(records.get(i).get(0)), records.get(i).get(1));
                         }
+                        setCount(getCount() - 1);
                     } catch (RuntimeException e) {
-                        System.out.println(e);
+                        log.error(e);
                     }
-                    System.out.println("3");
                     break;
                 }
                 case 4: {
@@ -209,35 +216,27 @@ public class ZipReader {
                         DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
                         try {
                             Date date = formatter.parse(records.get(i).get(3));
-                            purchaseLocalService.addPurchase(Long.parseLong(records.get(i).get(0)), Long.parseLong(records.get(i).get(1)),
-                                    Long.parseLong(records.get(i).get(2)),
-                                    date, Long.parseLong(records.get(i).get(4)));
+                            purchaseLocalService.addPurchase(Long.parseLong(records.get(i).get(0)), Long.parseLong(records.get(i).get(1)), Long.parseLong(records.get(i).get(2)), date, Long.parseLong(records.get(i).get(4)));
+                            setCount(getCount() - 1);
                         } catch (RuntimeException e) {
-                            System.out.println(e);
+                            log.error(e);
                             throw new RuntimeException(e);
                         } catch (ParseException e) {
+
                             throw new RuntimeException(e);
                         }
                     }
-                    System.out.println("4");
                     break;
                 }
                 case 5: {
                     try {
                         for (int i = 1; i < records.size(); i++) {
-                            electronicsLocalService.addElectronicsWithId(Long.parseLong(records.get(i).get(0)),
-                                    records.get(i).get(1),
-                                    Long.parseLong(records.get(i).get(2)),
-                                    Long.parseLong(records.get(i).get(3)),
-                                    Integer.parseInt(records.get(i).get(4)),
-                                    Boolean.parseBoolean(records.get(i).get(5)),
-                                    Boolean.parseBoolean(records.get(i).get(6)),
-                                    records.get(i).get(7));
+                            electronicsLocalService.addElectronicsWithId(Long.parseLong(records.get(i).get(0)), records.get(i).get(1), Long.parseLong(records.get(i).get(2)), Long.parseLong(records.get(i).get(3)), Integer.parseInt(records.get(i).get(4)), Boolean.parseBoolean(records.get(i).get(5)), Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7));
                         }
+                        setCount(getCount() - 1);
                     } catch (RuntimeException e) {
-                        System.out.println(e);
+                        log.error(e);
                     }
-                    System.out.println("5");
                     break;
                 }
                 case 6: {
@@ -245,14 +244,15 @@ public class ZipReader {
                         for (int i = 1; i < records.size(); i++) {
                             purchaseTypeLocalService.addPurchaseType(Long.parseLong(records.get(i).get(0)), records.get(i).get(1));
                         }
+                        setCount(getCount() - 1);
                     } catch (RuntimeException e) {
-                        System.out.println(e);
+                        log.error(e);
                     }
                     break;
                 }
             }
         } catch (RuntimeException e) {
-            System.out.println(e);
+            log.error(e);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

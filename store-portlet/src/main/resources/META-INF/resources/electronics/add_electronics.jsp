@@ -3,10 +3,15 @@
     PortletURL actionURL = renderResponse.createActionURL();
     actionURL.setParameter("javax.portlet.action", "addElectronics");
     actionURL.setParameter("addElectronicsAction", "addElectronicsAction");
+    List<ElectroType> all_etypes = (List<ElectroType>) renderRequest.getAttribute("all_etypes");
 %>
 <aui:form name="myForm" method="POST" action="<%=actionURL%>">
     <aui:input name="name" id="name" label="name"/>
-    <aui:input name="electroTypeId" id="electroTypeId" label="electroTypeId"/>
+     <aui:select name="electroTypeId" label="electroTypeId">
+       <c:forEach items="<%=all_etypes%>" var="type">
+        <aui:option value="${type.getElectroTypeId()}">${type.getName()}</aui:option>
+       </c:forEach>
+     </aui:select>
     <aui:input name="price" id="price" label="price"/>
     <aui:input name="electronics_count" id="electronics_count" label="electronics_count"/>
     <aui:input name="inStock" id="inStock" label="inStock"/>

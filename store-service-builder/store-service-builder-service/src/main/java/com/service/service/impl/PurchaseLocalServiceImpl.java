@@ -15,13 +15,23 @@
 package com.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.service.model.Employee;
 import com.service.model.Purchase;
 import com.service.model.impl.PurchaseImpl;
+import com.service.service.EmployeeLocalService;
+import com.service.service.EmployeeService;
 import com.service.service.base.PurchaseLocalServiceBaseImpl;
 import org.osgi.service.component.annotations.Component;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -42,6 +52,20 @@ public class PurchaseLocalServiceImpl extends PurchaseLocalServiceBaseImpl {
         purchase.setElectronicsId(ElectronicsId);
         purchase.setEmployeeId(employeeId);
         return super.addPurchase(purchase);
+    }
+    public List<Employee> findByPositionTypeIdCount(Long id) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        Order order = OrderFactoryUtil.desc("employeeId");
+        DynamicQuery query = DynamicQueryFactoryUtil.forClass(Purchase.class, classLoader)
+                .setProjection(ProjectionFactoryUtil.groupProperty("employeeId"))
+                .setProjection(ProjectionFactoryUtil.property("employeeId"))
+                .addOrder(order);
+        DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(Employee.class, getClassLoader())
+                .add(RestrictionsFactoryUtil.eq("PositionTypeId", id))
+                .add(PropertyFactoryUtil.forName("employeeId").in(query))
+                .addOrder(order);
+        dynamicQuery(entryQuery);
+        return dynamicQuery(entryQuery);
     }
     public Purchase addPurchase(
             Long id,
@@ -73,6 +97,42 @@ public class PurchaseLocalServiceImpl extends PurchaseLocalServiceBaseImpl {
     public int getPurchasesCount() {
         return super.getPurchasesCount();
     }
+
+    @Override
+    public DynamicQuery dynamicQuery() {
+        return super.dynamicQuery();
+    }
+
+    @Override
+    public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
+        return super.dynamicQuery(dynamicQuery);
+    }
+
+    @Override
+    public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+        return super.dynamicQuery(dynamicQuery, start, end);
+    }
+
+    @Override
+    public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start, int end, OrderByComparator<T> orderByComparator) {
+        return super.dynamicQuery(dynamicQuery, start, end, orderByComparator);
+    }
+
+    @Override
+    public long dynamicQueryCount(DynamicQuery dynamicQuery) {
+        return super.dynamicQueryCount(dynamicQuery);
+    }
+
+    @Override
+    public long dynamicQueryCount(DynamicQuery dynamicQuery, Projection projection) {
+        return super.dynamicQueryCount(dynamicQuery, projection);
+    }
+    @Override
+    public PersistedModel createPersistedModel(Serializable primaryKeyObj) throws PortalException {
+        return super.createPersistedModel(primaryKeyObj);
+    }
+
+    @Override
 
     public Purchase updatePurchase(
             Long ElectronicsId,

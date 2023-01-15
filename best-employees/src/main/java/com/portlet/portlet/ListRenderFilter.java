@@ -1,9 +1,12 @@
 package com.portlet.portlet;
 
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.portlet.constants.BestEmployeesPortletKeys;
-import com.portlet.model.BestEmployee;
-import com.service.model.*;
+import com.service.model.Electronics;
+import com.service.model.Employee;
+import com.service.model.PositionType;
+import com.service.model.Purchase;
 import com.service.service.*;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -16,7 +19,9 @@ import javax.portlet.filter.FilterConfig;
 import javax.portlet.filter.PortletFilter;
 import javax.portlet.filter.RenderFilter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component(
@@ -30,69 +35,93 @@ public class ListRenderFilter implements RenderFilter {
     @Override
     public void doFilter(RenderRequest request, RenderResponse response, FilterChain chain) throws IOException, PortletException {
         request.setAttribute("ps", positionTypeLocalService);
-        List<PositionType> list = positionTypeLocalService.getPositionTypes(0, positionTypeLocalService.getPositionTypesCount());
-        List<Employee> employees_with_count = new ArrayList<>();
-        List<Employee> employees_with_sum = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            HashMap<Long, BestEmployee> lists = new HashMap<>();
-            int finalI = i;
-            List<Purchase> purchases = purchaseLocalService.getPurchases(0, purchaseLocalService.getPurchasesCount())
-                    .stream()
-                    .filter(x -> {
-                        Calendar cal = Calendar.getInstance();
-                        cal.setTime(x.getPurchaseDate());
-                        return cal.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH);
-                    })
-                    .filter(x -> {
-                        try {
-                            return employeeLocalService.getEmployee(x.getEmployeeId()).getPositionTypeId() == list.get(finalI).getPositionTypeId();
-                        } catch (PortalException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
-                    .collect(Collectors.toList());
-            for (Purchase purchase : purchases) {
-                if (lists.get(purchase.getEmployeeId()) != null) {
-                    lists.get(purchase.getEmployeeId()).setCount(lists.get(purchase.getEmployeeId()).getCount() + 1);
-                    try {
-                        lists.get(purchase.getEmployeeId()).setSum(lists.get(purchase.getEmployeeId()).getSum()
-                                + electronicsLocalService.getElectronics(purchase.getElectronicsId()).getPrice());
-                    } catch (PortalException e) {
-                        throw new RuntimeException(e);
-                    }
-                } else {
-                    BestEmployee bestEmployee = new BestEmployee();
-                    bestEmployee.setId(purchase.getEmployeeId());
-                    bestEmployee.setCount(1);
-                    try {
-                        bestEmployee.setSum(electronicsLocalService.getElectronics(purchase.getElectronicsId()).getPrice());
-                    } catch (PortalException e) {
-                        throw new RuntimeException(e);
-                    }
-                    lists.put(purchase.getEmployeeId(), bestEmployee);
-                }
-            }
-            BestEmployee bestEmployee = lists.values().stream().max(Comparator.naturalOrder()).get();
-            Employee employee;
-            try {
-                employee = employeeLocalService.getEmployee(bestEmployee.getId());
-            } catch (PortalException e) {
-                throw new RuntimeException(e);
-            }
-            employees_with_count.add(employee);
-            BestEmployee bestEmployee2 = lists.values().stream()
-                    .sorted(Comparator.comparingLong(BestEmployee::getSum)).limit(1).findFirst().get();
-            Employee employee2;
-            try {
-                employee2 = employeeLocalService.getEmployee(bestEmployee2.getId());
-            } catch (PortalException e) {
-                throw new RuntimeException(e);
-            }
-            employees_with_sum.add(employee2);
+        List<PositionType> positionTypeList = positionTypeLocalService.getPositionTypes(0, positionTypeLocalService.getPositionTypesCount());
+        List<Employee> count_list = new ArrayList<>();
+        List<Employee> sum_list = new ArrayList<>();
+        List<Object> fi = findByPositionTypeIdCount();
+        Long[] ints = new Long[fi.size()];
+        HashMap<PositionType, Boolean> count_empl = new HashMap<>();
+        HashMap<Long, Long> empl = new HashMap<>();
+        for (int i = 0; i < fi.size(); i++) {
+            Object[] row = (Object[]) fi.get(i);
+            ints[i] = (Long) row[0];
+            empl.put((Long) row[0], (Long) row[1]);
         }
-        request.setAttribute("count", employees_with_count);
-        request.setAttribute("sum", employees_with_sum);
+        for (PositionType positionType : positionTypeList) {
+            count_empl.put(positionType, false);
+        }
+        for (PositionType positionType : positionTypeList) {
+            if (!count_empl.get(positionType)) {
+                Employee employee = find(ints, positionType.getPositionTypeId())
+                        .stream()
+                        .map(x -> (Employee) x).sorted((x, y) -> Long.compare(empl.get(y.getEmployeeId()), empl.get(x.getEmployeeId())))
+                        .collect(Collectors.toList()).get(0);
+                count_list.add(employee);
+                count_empl.put(positionType, true);
+            }
+        }
+        request.setAttribute("count", count_list);
+        for (PositionType positionType : positionTypeList) {
+            count_empl.put(positionType, false);
+        }
+        HashMap<Long, Long> sum_empl = new HashMap<>();
+        for (Long l : ints) {
+            Long sum = 0L;
+            List<Long> e_list = findByPositionTypeIdSum(l);
+            for (Long l2 : e_list) {
+                sum += (Long) findByPositionTypeIdElectronics(l2).get(0);
+            }
+            sum_empl.put(l, sum);
+        }
+        for (PositionType positionType : positionTypeList) {
+            if (!count_empl.get(positionType)) {
+                Employee employee = find(ints, positionType.getPositionTypeId())
+                        .stream()
+                        .map(x -> (Employee) x).sorted((x, y) -> Long.compare(sum_empl.get(y.getEmployeeId()), sum_empl.get(x.getEmployeeId())))
+                        .collect(Collectors.toList()).get(0);
+                sum_list.add(employee);
+                count_empl.put(positionType, true);
+            }
+        }
+
+        request.setAttribute("sum", sum_list);
         chain.doFilter(request, response);
+    }
+
+    public List<Object> find(Long[] ints, Long id) {
+        Order order = OrderFactoryUtil.desc("employeeId");
+        DynamicQuery query = DynamicQueryFactoryUtil.forClass(Employee.class, employeeLocalService.getClass().getClassLoader());
+        query.add(RestrictionsFactoryUtil.eq("PositionTypeId", id));
+        query.add(PropertyFactoryUtil.forName("employeeId").in(ints));
+        query.addOrder(order);
+        return purchaseLocalService.dynamicQuery(query);
+    }
+
+    public List<Object> findByPositionTypeIdCount() {
+        Order order = OrderFactoryUtil.desc("employeeId");
+        DynamicQuery query = DynamicQueryFactoryUtil.forClass(Purchase.class, purchaseLocalService.getClass().getClassLoader());
+        ProjectionList projectionList = ProjectionFactoryUtil.projectionList();
+        projectionList.add(ProjectionFactoryUtil.groupProperty("employeeId"));
+        projectionList.add(ProjectionFactoryUtil.rowCount());
+        query.setProjection(projectionList);
+        query.addOrder(order);
+        return purchaseLocalService.dynamicQuery(query);
+    }
+
+    public List<Long> findByPositionTypeIdSum(Long id) {
+        DynamicQuery query = DynamicQueryFactoryUtil.forClass(Purchase.class, purchaseLocalService.getClass().getClassLoader());
+        query.add(RestrictionsFactoryUtil.eq("employeeId", id));
+        query.setProjection(ProjectionFactoryUtil.property("ElectronicsId"));
+        return purchaseLocalService.dynamicQuery(query);
+    }
+
+    public List<Object> findByPositionTypeIdElectronics(Long id) {
+        DynamicQuery query = DynamicQueryFactoryUtil.forClass(Electronics.class, electronicsLocalService.getClass().getClassLoader());
+        query.add(RestrictionsFactoryUtil.eq("electronicsId", id));
+        ProjectionList projectionList = ProjectionFactoryUtil.projectionList();
+        projectionList.add(ProjectionFactoryUtil.property("price"));
+        query.setProjection(projectionList);
+        return purchaseLocalService.dynamicQuery(query);
     }
 
     @Override

@@ -262,6 +262,7 @@ public abstract class ElectroTypeLocalServiceBaseImpl
 	@Override
 	public ElectroType getElectroType(long electroTypeId)
 		throws PortalException {
+
 		return electroTypePersistence.findByPrimaryKey(electroTypeId);
 	}
 

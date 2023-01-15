@@ -1,6 +1,9 @@
 package com.portlet.portlet.actions;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.portlet.constants.StorePortletKeys;
@@ -27,9 +30,12 @@ import java.util.List;
         },
         service = MVCActionCommand.class
 )
-public class DeleteAction implements MVCActionCommand {
+public class DeleteAction extends BaseMVCActionCommand {
+    private static Log log = LogFactoryUtil.getLog(DeleteAction.class);
     @Override
-    public boolean processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+    public void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws PortletException {
+        hideDefaultErrorMessage(actionRequest);
+        hideDefaultSuccessMessage(actionRequest);
         switch (check(actionRequest, actionResponse)) {
             case "electroDeleteAction": {
                 long id = Long.parseLong(ParamUtil.getString(actionRequest, "electronicsId"));
@@ -54,12 +60,12 @@ public class DeleteAction implements MVCActionCommand {
                 try {
                     purchaseLocalService.deletePurchase(id);
                 } catch (PortalException e) {
+                    log.error(e);
                     throw new RuntimeException(e);
                 }
                 break;
             }
         }
-        return false;
     }
 
     public String check(ActionRequest actionRequest, ActionResponse actionResponse) {
@@ -67,9 +73,15 @@ public class DeleteAction implements MVCActionCommand {
         String electroDeleteAction = ParamUtil.getString(actionRequest, "electroDeleteAction");
         String employeeDeleteAction = ParamUtil.getString(actionRequest, "employeeDeleteAction");
         String purchaseDeleteAction = ParamUtil.getString(actionRequest, "purchaseDeleteAction");
-        listFlags.add(electroDeleteAction);
-        listFlags.add(employeeDeleteAction);
-        listFlags.add(purchaseDeleteAction);
+        if (!electroDeleteAction.trim().isEmpty()) {
+            listFlags.add(electroDeleteAction);
+        }
+        if (!purchaseDeleteAction.trim().isEmpty()) {
+            listFlags.add(purchaseDeleteAction);
+        }
+        if (!employeeDeleteAction.trim().isEmpty()) {
+            listFlags.add(employeeDeleteAction);
+        }
         return listFlags.stream().findFirst().filter(x -> !x.isEmpty()).get();
     }
 
